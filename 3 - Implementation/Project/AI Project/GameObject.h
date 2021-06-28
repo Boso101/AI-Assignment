@@ -1,10 +1,13 @@
 #include <raymath.h>
 #include "Component.h"
 #include <iostream>
+#include <vector>
+#include <unordered_map>
 #pragma once
 
 // ComponentPtris a smart-pointer wrapping shared Components
 typedef std::shared_ptr<Component> ComponentPtr;
+
 class GameObject
 {
 
@@ -26,11 +29,17 @@ public:
 	Vector2 GetVelocity() { return m_velocity; }
 	void AddForce(Vector2 force) { m_force = Vector2Add(force, m_force); }
 
+	
+	
+
+	void AddComponent(std::string componentName, ComponentPtr component);
 	void UpdateComponents(float deltaTime);
+	void DrawComponents();
+	ComponentPtr GetComponent(std::string name);
 
 protected:
 
-	std::vector<ComponentPtr> components;
+	std::unordered_map<std::string, ComponentPtr> components;
 
 
 

@@ -9,7 +9,7 @@ public:
 	Agent();
 	virtual ~Agent();
 
-	void Update(GameObject* obj, float deltaTime);
+	void Update(GameObject obj, float deltaTime);
 
 	// Add a behaviour to the agent
 	void AddBehaviour(Behaviour* behaviour);
