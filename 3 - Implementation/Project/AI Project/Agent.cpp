@@ -1,7 +1,10 @@
 #include "Agent.h"
 #include "Behaviour.h"
 Agent::Agent()
-{}
+{
+
+
+}
 Agent::~Agent()
 {}
 // Update the agent and its behaviours
