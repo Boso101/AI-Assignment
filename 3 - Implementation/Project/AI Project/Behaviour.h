@@ -1,5 +1,5 @@
-#include "Agent.h"
 #pragma once
+#include "Agent.h"
 class Behaviour
 {
 public:
@@ -7,5 +7,5 @@ public:
 	Behaviour() {}
 	virtual ~Behaviour() {}
 	// pure virtual function for executing the behaviour
-	virtual bool Update(Agent* agent, float deltaTime) = 0;
+	virtual bool Update(Agent* agent, float deltaTime);
 };

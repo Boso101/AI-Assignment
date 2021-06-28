@@ -1,11 +1,13 @@
 #include "GameObject.h"
+#include "Component.h"
+
 #include <typeindex>
 #include <iterator>
 
 void GameObject::UpdateComponents(float deltaTime)
 {
 	// Get an iterator pointing to begining of map
-	std::unordered_map<std::string, ComponentPtr>::iterator it = components.begin();
+	std::map<std::string, ComponentPtr>::iterator it = components.begin();
 	// Iterate over the map using iterator
 	while (it != components.end())
 	{
@@ -17,7 +19,7 @@ void GameObject::UpdateComponents(float deltaTime)
 void GameObject::DrawComponents()
 {
 	// Get an iterator pointing to begining of map
-	std::unordered_map<std::string, ComponentPtr>::iterator it = components.begin();
+	std::map<std::string, ComponentPtr>::iterator it = components.begin();
 	// Iterate over the map using iterator
 	while (it != components.end())
 	{

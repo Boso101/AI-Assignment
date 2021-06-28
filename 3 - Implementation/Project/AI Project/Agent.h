@@ -1,6 +1,9 @@
+#pragma once
 #include "Component.h"
 #include <vector>
-#pragma once
+
+class Behaviour;
+
 class Agent : public Component
 {
 public:
@@ -13,6 +16,6 @@ public:
 	void AddBehaviour(Behaviour* behaviour);
 	
 protected:
-	std::vector<Behaviour*> m_behaviourList;
+	std::vector<Behaviour*> behaviourList;
 
 };
