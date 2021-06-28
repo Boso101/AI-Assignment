@@ -1,5 +1,5 @@
-#include "Component.h"
 #pragma once
+#include "Component.h"
 class Sensor : public Component
 {
 public:

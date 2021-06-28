@@ -169,7 +169,9 @@
   <ItemGroup>
     <ClCompile Include="Agent.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="KeyboardBehaviour.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Movement.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Sensor.cpp" />
     <ClCompile Include="SteeringBehaviour.cpp" />
@@ -181,6 +183,8 @@
     <ClInclude Include="Behaviour.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="KeyboardBehaviour.h" />
+    <ClInclude Include="Movement.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="Sensor.h" />
     <ClInclude Include="SteeringBehaviour.h" />

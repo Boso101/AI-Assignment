@@ -1,11 +1,9 @@
-#include "GameObject.h"
 #pragma once
+#include "GameObject.h"
 class Unit : GameObject
 {
-	Unit()
-	{
-
-	}
+public:
+	Unit();
 
 };
 

@@ -1,7 +1,7 @@
+#pragma once
 #include <raymath.h>
 #include "Agent.h"
 
-#pragma once
 class SteeringForce
 {
 public:

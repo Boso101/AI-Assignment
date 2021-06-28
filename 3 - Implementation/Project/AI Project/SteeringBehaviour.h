@@ -1,5 +1,5 @@
-#include "SteeringForce.h"
 #pragma once
+#include "SteeringForce.h"
 typedef std::shared_ptr<SteeringForce> SteeringForcePtr;
 
 class SteeringBehaviour : public SteeringForce

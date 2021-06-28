@@ -9,6 +9,6 @@ public:
 	/// </summary>
 	/// <param name="obj"></param>
 	/// <param name="deltaTime"></param>
-	virtual void Update(GameObject obj, float deltaTime);
-	virtual void Draw(GameObject obj);
+	virtual void Update(GameObject obj, float deltaTime) = 0;
+	virtual void Draw(GameObject obj) = 0;
 };
