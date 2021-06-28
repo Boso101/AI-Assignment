@@ -5,11 +5,12 @@
 #include <unordered_map>
 #pragma once
 
-// ComponentPtris a smart-pointer wrapping shared Components
-typedef std::shared_ptr<Component> ComponentPtr;
+
 
 class GameObject
 {
+	// ComponentPtris a smart-pointer wrapping shared Components
+	typedef std::shared_ptr<Component> ComponentPtr;
 
 public:
 	Vector2 m_position = { 0, 0 };
@@ -32,7 +33,7 @@ public:
 	
 	
 
-	void AddComponent(std::string componentName, ComponentPtr component);
+	void AddComponent(std::string componentName, const ComponentPtr& component);
 	void UpdateComponents(float deltaTime);
 	void DrawComponents();
 	ComponentPtr GetComponent(std::string name);

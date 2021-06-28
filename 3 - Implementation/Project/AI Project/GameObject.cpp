@@ -26,14 +26,14 @@ void GameObject::DrawComponents()
 	}
 }
 
-ComponentPtr GameObject::GetComponent(std::string name)
+GameObject::ComponentPtr GameObject::GetComponent(std::string name)
 {
 	return components[name];
 }
 
-void GameObject::AddComponent(std::string componentName, ComponentPtr component)
+void GameObject::AddComponent(std::string componentName, const ComponentPtr& component)
 {
-	 components[componentName] = component;
+	components.insert(std::make_pair(componentName, component));
 }
 
 

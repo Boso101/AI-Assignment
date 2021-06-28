@@ -2,7 +2,10 @@
 #pragma once
 class Unit : GameObject
 {
+	Unit()
+	{
 
+	}
 
 };
 

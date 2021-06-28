@@ -1,5 +1,5 @@
-#pragma once
 #include "Agent.h"
+#pragma once
 class Behaviour
 {
 public:
