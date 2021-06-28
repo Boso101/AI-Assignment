@@ -173,6 +173,8 @@
   <ItemGroup>
     <ClInclude Include="Agent.h" />
     <ClInclude Include="Behaviour.h" />
+    <ClInclude Include="Component.h" />
+    <ClInclude Include="GameObject.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
