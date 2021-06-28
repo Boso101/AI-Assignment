@@ -10,6 +10,7 @@ int main(int argc, char* argv[])
     //--------------------------------------------------------------------------------------
     int screenWidth = 1600;
     int screenHeight = 900;
+    float deltaTime;
 
     InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
 
@@ -19,6 +20,7 @@ int main(int argc, char* argv[])
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
+        deltaTime = GetFrameTime();
         // Update
         //----------------------------------------------------------------------------------
         // TODO: Update your variables here
