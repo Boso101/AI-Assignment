@@ -3,6 +3,7 @@
 #define RAYGUI_IMPLEMENTATION
 #define RAYGUI_SUPPORT_ICONS
 #include "raygui.h"
+#include "Unit.h"
 
 int main(int argc, char* argv[])
 {
@@ -15,6 +16,10 @@ int main(int argc, char* argv[])
     InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
 
     SetTargetFPS(60);
+
+    std::unique_ptr<Unit> player;
+
+    
     //--------------------------------------------------------------------------------------
 
     // Main game loop
@@ -22,9 +27,8 @@ int main(int argc, char* argv[])
     {
         deltaTime = GetFrameTime();
         // Update
-        //----------------------------------------------------------------------------------
-        // TODO: Update your variables here
-        //----------------------------------------------------------------------------------
+
+
 
         // Draw
         //----------------------------------------------------------------------------------
