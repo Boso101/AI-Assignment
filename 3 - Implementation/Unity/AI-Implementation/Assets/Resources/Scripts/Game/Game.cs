@@ -13,7 +13,9 @@ public class Game : MonoBehaviour
 
     protected Grid grid;
     protected Astar algorithm;
-    protected List<GameObject> tileVisuals;
+
+    //Associate each visual with its data version
+    protected Dictionary<PathNode,GameObject> tileVisuals;
 
 
     private void Start()
@@ -32,17 +34,20 @@ public class Game : MonoBehaviour
     {
         if (grid.path != null)
         {
-         
+         foreach(PathNode node in grid.path)
+            {
+                tileVisuals[node].GetComponentInChildren<Renderer>().material.SetColor("_Color", Color.green);
+            }
         }
 
     }
 
     private void UpdateVisuals()
     {
-        foreach(GameObject rend in tileVisuals)
+        foreach(KeyValuePair<PathNode, GameObject> entry in tileVisuals)
         {
-            rend.GetComponent<Renderer>().material.SetColor("_Color", grid.GetNode((int)rend.transform.position.x, (int)rend.transform.position.y).Color);
-        }
+            
+        }       
     }
 
   
@@ -55,7 +60,7 @@ public class Game : MonoBehaviour
         {
         GameObject parent = new GameObject();
         parent.transform.position = Vector3.zero;
-
+        tileVisuals = new Dictionary<PathNode, GameObject>();
             for (int i = 0; i < rows; i++)
             {
 
@@ -71,7 +76,7 @@ public class Game : MonoBehaviour
 
                     gridObj.GetComponentInChildren<Renderer>().material.SetColor("_Color", node.Color);
                 
-                tileVisuals.Add(gridObj);
+                tileVisuals.Add(node, gridObj);
 
                 }
             }
