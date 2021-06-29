@@ -26,6 +26,10 @@ public class Clicker : MonoBehaviour
             Debug.Log("Right");
             SendRayCast("right");
         }
+        else if (Input.GetMouseButton(2))
+        {
+            SendRayCast("middle");
+        }
     }
 
 
@@ -45,6 +49,11 @@ public class Clicker : MonoBehaviour
                 PathNode node = visual.Grid.GetNode((int)pos.x, (int)pos.y);
                 if(node != null && node.IsWalkable)visual.start = node;
                 
+            }
+            else if (type == "middle")
+            {
+                PathNode node = visual.Grid.GetNode((int)pos.x, (int)pos.y);
+                if (node != null) node.IsWalkable = false;
             }
             else
             {

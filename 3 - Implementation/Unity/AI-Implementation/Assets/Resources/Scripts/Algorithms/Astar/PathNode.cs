@@ -112,18 +112,19 @@ public class PathNode
         int xDist = Mathf.Abs(Xposition - other.GetXPosition());
         int yDist = Mathf.Abs(Yposition - other.GetYPosition());
 
-        //Calculate true remainder oncew we have absolute values
-        int remainder = Mathf.Abs(xDist - yDist);
+        ////Calculate true remainder oncew we have absolute values
+        //int remainder = Mathf.Abs(xDist - yDist);
 
-        // Use the costs to determine the minimum cost
-        return diagonalCost * Mathf.Min(xDist, yDist) + straightCost * remainder;
+        //// Use the costs to determine the minimum cost
+        //return diagonalCost * Mathf.Min(xDist, yDist) + straightCost * remainder;
 
-        //int dstX = Mathf.Abs(GetXPosition() - other.GetXPosition());
-        //int dstY = Mathf.Abs(GetYPosition() - other.GetYPosition());
+        int dstX = Mathf.Abs(GetXPosition() - other.GetXPosition());
+        int dstY = Mathf.Abs(GetYPosition() - other.GetYPosition());
 
-        //if (dstX > dstY)
-        //    return straightCost * dstY + diagonalCost * (dstX - dstY);
-        //return straightCost * dstX + diagonalCost * (dstY - dstX);
+        if (dstX > dstY)
+            return straightCost * dstY + diagonalCost * (dstX - dstY);
+        
+        return straightCost * dstX + diagonalCost * (dstY - dstX);
 
     }
 }

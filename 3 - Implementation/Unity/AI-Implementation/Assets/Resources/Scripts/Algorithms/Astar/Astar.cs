@@ -36,13 +36,13 @@ public class Astar
         HashSet<PathNode> closedList = new HashSet<PathNode>();
 
 
-            // Get Lowest costs while we still have open nodes
-            while (openList.Count > 0)
-            {
+        // Get Lowest costs while we still have open nodes
+        while (openList.Count > 0)
+        {
             PathNode currNode = GetLowestFCostNode(openList);
-            
-          
-           
+
+
+
             openList.Remove(currNode);
             closedList.Add(currNode);
 
@@ -63,7 +63,7 @@ public class Astar
             //Now go through the neighbours of current node and make sure it's walkable and isn't closed
             foreach (PathNode neighbour in grid.GetNeighbours(currNode))
             {
-                if(!neighbour.IsWalkable || closedList.Contains(neighbour))
+                if (!neighbour.IsWalkable || closedList.Contains(neighbour))
                 {
                     //Some sort of debug here
                     continue;
@@ -71,26 +71,26 @@ public class Astar
                 // Get the new cost by adding our current cost to the distance cost of the neighbour node
                 int newNeighbourCost = currNode.gCost + currNode.GetDistance(neighbour, STRAIGHT, DIAGONAL);
 
-                    // if our new cost is less than our neighbours cost or our neighbour doesnt exist in the open list
-                    if(newNeighbourCost < neighbour.gCost || !openList.Contains(neighbour))
-                    {
-                        //Update node costs
-                        neighbour.gCost = newNeighbourCost;
-                        neighbour.hCost = neighbour.GetDistance(endNode, STRAIGHT, DIAGONAL);
-                        neighbour.parent = currNode;
+                // if our new cost is less than our neighbours cost or our neighbour doesnt exist in the open list
+                if (newNeighbourCost < neighbour.gCost || !openList.Contains(neighbour))
+                {
+                    //Update node costs
+                    neighbour.gCost = newNeighbourCost;
+                    neighbour.hCost = neighbour.GetDistance(endNode, STRAIGHT, DIAGONAL);
+                    neighbour.parent = currNode;
 
-                        // if it doesnt contain then add it
-                        if(!openList.Contains(neighbour))
-                        {
-                            openList.Add(neighbour);
-                        }
+                    // if it doesnt contain then add it
+                    if (!openList.Contains(neighbour))
+                    {
+                        openList.Add(neighbour);
                     }
-               
+                }
+
             }
         }
 
 
-        
+
     }
 
     private void RetracePath(Grid grid, PathNode startNode, PathNode endNode)
@@ -110,9 +110,9 @@ public class Astar
         grid.path = path;
     }
 
-   
 
-  
+
+
 
 
     //Again, should probably use a container for the grid so that the dimensions are with it
@@ -129,9 +129,9 @@ public class Astar
         PathNode lowestFCost = pathNodeList[0];
 
         // Loop through the list and see if we find anything smaller
-        for (int i = 1; i < pathNodeList.Count; i++)
+        for (int i = 0; i < pathNodeList.Count; i++)
         {
-            if(pathNodeList[i].FCost < lowestFCost.FCost || pathNodeList[i].FCost == lowestFCost.FCost)
+            if (pathNodeList[i].FCost < lowestFCost.FCost)
             {
                 lowestFCost = pathNodeList[i];
             }
