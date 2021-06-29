@@ -20,6 +20,7 @@ public class Game : MonoBehaviour
     //Associate each visual with its data version
     protected Dictionary<PathNode,GameObject> tileVisuals;
 
+    public Grid Grid { get => grid; }
 
     private void Start()
     {
@@ -56,6 +57,7 @@ public class Game : MonoBehaviour
   
     public void Randomize()
     {
+        // go through each node and change whether or not they are walkable based on user %
         for (int i = 0; i < grid.rows; i++)
         {
             for (int j = 0; j < grid.columns; j++)
@@ -75,6 +77,7 @@ public class Game : MonoBehaviour
             }
         }
 
+        //Loop through and update visuals
         UpdateVisuals();
         
 
@@ -113,9 +116,6 @@ public class Game : MonoBehaviour
 
     
     
-    public void PlaceFood(Vector2 pos)
-    {
-
-    }
+    
     
 }
