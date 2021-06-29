@@ -87,10 +87,13 @@ public class Astar
             //Now go through the neighbours of current node and make sure it's walkable and isn't closed
             foreach (PathNode neighbour in grid.GetNeighbours(currNode))
             {
-                if(neighbour.IsWalkable || !closedList.Contains(neighbour))
+                if(!neighbour.IsWalkable || closedList.Contains(neighbour))
                 {
-                    // Get the new cost by adding our current cost to the distance cost of the neighbour node
-                    int newNeighbourCost = currNode.gCost + currNode.GetDistance(neighbour, STRAIGHT, DIAGONAL);
+                    //Some sort of debug here
+                    continue;
+                }
+                // Get the new cost by adding our current cost to the distance cost of the neighbour node
+                int newNeighbourCost = currNode.gCost + currNode.GetDistance(neighbour, STRAIGHT, DIAGONAL);
 
                     // if our new cost is less than our neighbours cost or our neighbour doesnt exist in the open list
                     if(newNeighbourCost < neighbour.gCost || !openList.Contains(neighbour))
@@ -106,7 +109,7 @@ public class Astar
                             openList.Add(neighbour);
                         }
                     }
-                }
+               
             }
         }
 
