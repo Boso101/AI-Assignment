@@ -9,6 +9,8 @@ public class Game : MonoBehaviour
     public int columns;
 
     [SerializeField] protected GameObject gridPrefab;
+
+    protected PathNode[][] grid;
     /// <summary>
     /// Here we will use some sort of Node system to create our grids for our AI to then use 
     /// </summary>
@@ -19,24 +21,27 @@ public class Game : MonoBehaviour
 
     private void Start()
     {
-        CreateGrid(rows, columns);
+        CreateGrid();
+        CreateGridVisual();
     }
 
-    public void CreateGrid(int rows, int columns)
+    public void CreateGrid()
     {
-
         for (int i = 0; i < rows; i++)
         {
 
 
             for (int j = 0; j < columns; j++)
             {
-                //Instantiate Grid Object 
-                GameObject gridObj = Instantiate(gridPrefab);
-                gridObj.transform.position = new Vector2(i, j);
-
-
+                grid[i][j] = new PathNode(i, j);
             }
+        }
+
+    public void CreateGridVisual()
+    {
+
+       foreach(PathNode node in grid)
+        {
 
         }
 
