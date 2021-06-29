@@ -17,6 +17,7 @@ public class Game : MonoBehaviour
     private void Start()
     {
         grid = new Grid(rows, columns);
+        CreateGridVisual(grid);
     }
 
 
@@ -28,6 +29,8 @@ public class Game : MonoBehaviour
     /// </summary>
         public void CreateGridVisual(Grid grid)
         {
+        GameObject parent = new GameObject();
+        parent.transform.position = Vector3.zero;
 
             for (int i = 0; i < rows; i++)
             {
@@ -37,6 +40,7 @@ public class Game : MonoBehaviour
                 {
                     //Instantiate Grid Object 
                     GameObject gridObj = Instantiate(gridPrefab);
+                    gridObj.transform.SetParent(parent.transform);
                     gridObj.transform.position = new Vector2(grid.GetNode(i, j).GetXPosition(), grid.GetNode(i, j).GetYPosition());
                     gridObj.name = gridObj.transform.position.ToString();
 
