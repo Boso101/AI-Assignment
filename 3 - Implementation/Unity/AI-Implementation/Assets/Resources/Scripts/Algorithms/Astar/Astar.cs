@@ -152,7 +152,7 @@ public class Astar
         // Loop through the list and see if we find anything smaller
         for (int i = 1; i < pathNodeList.Count; i++)
         {
-            if(pathNodeList[i].fCost < lowestFCost.fCost || pathNodeList[i].fCost == lowestFCost.fCost)
+            if(pathNodeList[i].FCost < lowestFCost.FCost || pathNodeList[i].FCost == lowestFCost.FCost)
             {
                 lowestFCost = pathNodeList[i];
             }

@@ -38,6 +38,18 @@ public class PathNode
     
     }
 
+    public float FCost
+    { 
+    
+    get
+        {
+
+            return gCost + hCost;
+
+        }
+    }
+    
+
 
     public PathNode(int row, int column, bool walkable)
     {
