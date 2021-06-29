@@ -11,7 +11,8 @@ public class PathNode
 {
 
     //Hold position data just incase
-    protected Vector2 position;
+    protected int Xposition;
+    protected int Yposition;
 
     public int gCost;
     public int hCost;
@@ -21,11 +22,36 @@ public class PathNode
 
     public PathNode(int row, int column)
     {
-        position = new Vector2(row, column);
+        Xposition = row;
+        Yposition = column;
+
+        // Just make the gCost absurdly high value for now
+        gCost = int.MaxValue;
+
+        originated = null;
+    }
+
+    public PathNode(int row, int column, int gCost, int hCost, int fCost)
+    {
+        Xposition = row;
+        Yposition = column;
+
+        this.gCost = gCost;
+        this.hCost = hCost;
+        this.fCost = fCost;
+
+        originated = null;
+
+
     }
 
     public Vector2 GetPosition()
     {
-        return position;
+        return new Vector2(Xposition, Yposition);
+    }
+
+    public void CalculateFCost()
+    {
+        fCost = gCost + hCost;
     }
 }
