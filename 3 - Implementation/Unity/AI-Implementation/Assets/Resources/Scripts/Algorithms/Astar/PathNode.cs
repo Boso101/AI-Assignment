@@ -21,4 +21,9 @@ public class PathNode
     {
         position = new Vector2(row, column);
     }
+
+    public Vector2 GetPosition()
+    {
+        return position;
+    }
 }

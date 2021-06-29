@@ -10,7 +10,7 @@ public class Game : MonoBehaviour
 
     [SerializeField] protected GameObject gridPrefab;
 
-    protected PathNode[][] grid;
+    protected PathNode[,] grid;
     /// <summary>
     /// Here we will use some sort of Node system to create our grids for our AI to then use 
     /// </summary>
@@ -25,30 +25,48 @@ public class Game : MonoBehaviour
         CreateGridVisual();
     }
 
+
+
+    /// <summary>
+    /// The stored version of the grid
+    /// </summary>
     public void CreateGrid()
     {
+        grid = new PathNode[rows, columns];
+
         for (int i = 0; i < rows; i++)
         {
 
 
             for (int j = 0; j < columns; j++)
             {
-                grid[i][j] = new PathNode(i, j);
+                grid[i,j] = new PathNode(i, j);
             }
         }
+    }
 
-    public void CreateGridVisual()
-    {
-
-       foreach(PathNode node in grid)
+    /// <summary>
+    /// The visualized version of the grid
+    /// </summary>
+        public void CreateGridVisual()
         {
+
+            for (int i = 0; i < rows; i++)
+            {
+
+
+                for (int j = 0; j < columns; j++)
+                {
+                    //Instantiate Grid Object 
+                    GameObject gridObj = Instantiate(gridPrefab);
+                    gridObj.transform.position = grid[i,j].GetPosition();
+                    gridObj.name = gridObj.transform.position.ToString();
+                }
+            }
 
         }
 
-    }
-
-
-
+    
     
     public void PlaceFood(Vector2 pos)
     {
