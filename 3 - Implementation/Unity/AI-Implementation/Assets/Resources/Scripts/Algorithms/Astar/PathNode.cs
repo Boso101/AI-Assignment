@@ -10,6 +10,7 @@ using UnityEngine;
 public class PathNode
 {
 
+
     //Hold position data just incase
     protected int Xposition;
     protected int Yposition;
@@ -29,6 +30,7 @@ public class PathNode
         gCost = int.MaxValue;
 
         originated = null;
+        CalculateFCost();
     }
 
     public PathNode(int row, int column, int gCost, int hCost, int fCost)
@@ -41,6 +43,8 @@ public class PathNode
         this.fCost = fCost;
 
         originated = null;
+        CalculateFCost();
+
 
 
     }
@@ -68,14 +72,17 @@ public class PathNode
     /// </summary>
     /// <param name="other"></param>
     /// <returns></returns>
-    public int CalculateDistance(PathNode other)
+    public void CalculateDistance(PathNode other, int straightCost, int diagonalCost)
     {
         // Differences between our points thus distance
         int xDist = Mathf.Abs(Xposition - other.GetXPosition());
         int yDist = Mathf.Abs(Yposition - other.GetYPosition());
 
         //Calculate true remainder oncew we have absolute values
-        return Mathf.Abs(xDist - yDist);
+        int remainder = Mathf.Abs(xDist - yDist);
+
+        // Use the costs to determine the minimum cost
+        hCost = diagonalCost * Mathf.Min(xDist, yDist) + straightCost * remainder;
 
     }
 }

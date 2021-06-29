@@ -10,45 +10,23 @@ public class Game : MonoBehaviour
 
     [SerializeField] protected GameObject gridPrefab;
 
-    protected PathNode[,] grid;
-    /// <summary>
-    /// Here we will use some sort of Node system to create our grids for our AI to then use 
-    /// </summary>
-    /// <param name="rows"></param>
-    /// <param name="columns"></param>
-    /// 
+
+    protected Grid grid;
 
 
     private void Start()
     {
-        CreateGrid();
-        CreateGridVisual();
+        grid = new Grid(rows, columns);
     }
 
 
 
-    /// <summary>
-    /// The stored version of the grid
-    /// </summary>
-    public void CreateGrid()
-    {
-        grid = new PathNode[rows, columns];
-
-        for (int i = 0; i < rows; i++)
-        {
-
-
-            for (int j = 0; j < columns; j++)
-            {
-                grid[i,j] = new PathNode(i, j);
-            }
-        }
-    }
+   
 
     /// <summary>
     /// The visualized version of the grid
     /// </summary>
-        public void CreateGridVisual()
+        public void CreateGridVisual(Grid grid)
         {
 
             for (int i = 0; i < rows; i++)
