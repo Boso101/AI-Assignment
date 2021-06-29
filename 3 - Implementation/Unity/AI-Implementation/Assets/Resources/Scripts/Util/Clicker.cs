@@ -26,7 +26,7 @@ public class Clicker : MonoBehaviour
             Debug.Log("Right");
             SendRayCast("right");
         }
-        else if (Input.GetMouseButton(2))
+        else if (Input.GetKeyDown(KeyCode.E))
         {
             SendRayCast("middle");
         }
@@ -53,7 +53,9 @@ public class Clicker : MonoBehaviour
             else if (type == "middle")
             {
                 PathNode node = visual.Grid.GetNode((int)pos.x, (int)pos.y);
-                if (node != null) node.IsWalkable = false;
+
+                //Invert whatever it is
+                if (node != null) node.IsWalkable = !node.IsWalkable;
             }
             else
             {
