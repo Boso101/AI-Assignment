@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class Agent : MonoBehaviour
 {
-    protected List<>
+    protected List<Behaviour> behaviourList;
 }
