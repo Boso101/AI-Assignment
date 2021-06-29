@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Clicker : MonoBehaviour
 {
-    protected Game game;
+    protected Visualizer visual;
 
 
     private void Awake()
     {
-        game = GameObject.FindObjectOfType<Game>();
+        visual = GameObject.FindObjectOfType<Visualizer>();
     }
     private void Update()
     {
@@ -42,8 +42,8 @@ public class Clicker : MonoBehaviour
             if(type == "left")
             {
                 //Set Start Pos
-                PathNode node = game.Grid.GetNode((int)pos.x, (int)pos.y);
-                if(node.IsWalkable)game.start = node;
+                PathNode node = visual.Grid.GetNode((int)pos.x, (int)pos.y);
+                if(node != null && node.IsWalkable)visual.start = node;
                 
             }
             else
@@ -51,10 +51,12 @@ public class Clicker : MonoBehaviour
                 // We right clicked so try place end spot
 
                 //Set End Pos
-                PathNode node = game.Grid.GetNode((int)pos.x, (int)pos.y);
-                if (node.IsWalkable) game.end = node;
+                PathNode node = visual.Grid.GetNode((int)pos.x, (int)pos.y);
+                if (node != null && node.IsWalkable) visual.end = node;
             }
 
+
+            visual.RecolorImportant();
         }
     }
 

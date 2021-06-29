@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Game : MonoBehaviour
+public class Visualizer : MonoBehaviour
 {
     [Header("Settings")]
     public int rows;
@@ -32,11 +32,13 @@ public class Game : MonoBehaviour
 
         //Try Path thing once
         algorithm = new Astar();
-        algorithm.FindPath(grid, 0, 0, 8, 8);
-        ShowPath();
+
     }
 
 
+    /// <summary>
+    /// Draws the path calculated by the algorithm
+    /// </summary>
     private void ShowPath()
     {
         if (grid.path != null)
@@ -49,15 +51,64 @@ public class Game : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Colors the start and end points
+    /// </summary>
+public void RecolorImportant()
+    {
+        UpdateVisuals();
+        ColorStart();
+        ColorEnd();
+    }
+
+    protected void ColorStart()
+    {
+        try
+        {
+            GameObject starter = tileVisuals[start];
+            starter?.GetComponentInChildren<Renderer>().material.SetColor("_Color", Color.blue);
+
+
+        }
+        catch
+        {
+            Debug.LogError("Something went wrong while fetching visual version of node");
+
+        }
+    }
+
+    protected void ColorEnd()
+    {
+        try
+        {
+            GameObject ender = tileVisuals[end];
+            ender?.GetComponentInChildren<Renderer>().material.SetColor("_Color", Color.red);
+
+        }
+        catch
+        {
+            Debug.LogError("Something went wrong while fetching visual version of node");
+
+        }
+
+    }
+
+    /// <summary>
+    /// Colors everything depending if its walkable or not
+    /// </summary>
     private void UpdateVisuals()
     {
         foreach(KeyValuePair<PathNode, GameObject> entry in tileVisuals)
         {
             entry.Value.GetComponentInChildren<Renderer>().material.SetColor("_Color", entry.Key.Color);
-        }       
+        }
+
     }
 
   
+    /// <summary>
+    /// Randomize the current maze
+    /// </summary>
     public void Randomize()
     {
         // go through each node and change whether or not they are walkable based on user %
@@ -81,6 +132,8 @@ public class Game : MonoBehaviour
         }
 
         //Loop through and update visuals
+        start = null;
+        end = null;
         UpdateVisuals();
         
 
@@ -117,7 +170,9 @@ public class Game : MonoBehaviour
 
         }
 
-
+    /// <summary>
+    /// Uses the debug button to find a path
+    /// </summary>
     public void FindPath()
     {
         if(start != null && end != null)
