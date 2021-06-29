@@ -20,6 +20,9 @@ public class Game : MonoBehaviour
     //Associate each visual with its data version
     protected Dictionary<PathNode,GameObject> tileVisuals;
 
+    public PathNode start;
+    public PathNode end;
+
     public Grid Grid { get => grid; }
 
     private void Start()
@@ -114,8 +117,20 @@ public class Game : MonoBehaviour
 
         }
 
-    
-    
-    
-    
+
+    public void FindPath()
+    {
+        if(start != null && end != null)
+        {
+
+        algorithm.FindPath(grid, start.GetXPosition(), start.GetYPosition(), end.GetXPosition(), end.GetYPosition());
+        ShowPath();
+        }
+
+    }
+
+
+
+
+
 }

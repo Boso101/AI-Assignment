@@ -13,6 +13,7 @@ public class Clicker : MonoBehaviour
     }
     private void Update()
     {
+       
         if(Input.GetMouseButtonDown(0))
         {
 
@@ -30,23 +31,28 @@ public class Clicker : MonoBehaviour
 
     private void SendRayCast(string type)
     {
-        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
 
         if (hit.collider && hit.collider.CompareTag("GridComp"))
         {
+            Debug.Log(hit.collider.transform.position);
             Vector2 pos = hit.collider.transform.position;
             // We left clicked so try place start spot
             if(type == "left")
             {
                 //Set Start Pos
                 PathNode node = game.Grid.GetNode((int)pos.x, (int)pos.y);
+                if(node.IsWalkable)game.start = node;
+                
             }
             else
             {
                 // We right clicked so try place end spot
 
                 //Set End Pos
-
+                PathNode node = game.Grid.GetNode((int)pos.x, (int)pos.y);
+                if (node.IsWalkable) game.end = node;
             }
 
         }
