@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Game : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class Game : MonoBehaviour
     public float percentageWalkable;
     [SerializeField] protected GameObject gridPrefab;
 
+    [Header("Debugging")]
+    [SerializeField] protected Text userInput;
 
     protected Grid grid;
     protected Astar algorithm;
@@ -46,12 +49,37 @@ public class Game : MonoBehaviour
     {
         foreach(KeyValuePair<PathNode, GameObject> entry in tileVisuals)
         {
-            
+            entry.Value.GetComponentInChildren<Renderer>().material.SetColor("_Color", entry.Key.Color);
         }       
     }
 
   
+    public void Randomize()
+    {
+        for (int i = 0; i < grid.rows; i++)
+        {
+            for (int j = 0; j < grid.columns; j++)
+            {
 
+                try
+                {
+
+                grid.GetNode(i, j).IsWalkable = Random.value <= float.Parse(userInput.text);
+                }
+                catch
+                {
+                    Debug.LogError("Invalid % given");
+                }
+
+
+            }
+        }
+
+        UpdateVisuals();
+        
+
+       
+    }
 
     /// <summary>
     /// The visualized version of the grid

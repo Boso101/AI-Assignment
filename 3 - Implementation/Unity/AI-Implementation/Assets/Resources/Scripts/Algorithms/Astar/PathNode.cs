@@ -23,7 +23,7 @@ public class PathNode
 
     public PathNode parent;
 
-    public bool IsWalkable { get => isWalkable; }
+    public bool IsWalkable { get => isWalkable; set => isWalkable = value; }
     public Color Color
     { 
     
@@ -34,6 +34,8 @@ public class PathNode
             return Color.black;
 
         }
+
+       
     
     
     }
