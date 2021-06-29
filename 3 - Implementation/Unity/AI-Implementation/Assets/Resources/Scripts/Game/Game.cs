@@ -37,8 +37,15 @@ public class Game : MonoBehaviour
                 {
                     //Instantiate Grid Object 
                     GameObject gridObj = Instantiate(gridPrefab);
-                    gridObj.transform.position = grid[i,j].GetPosition();
+                    gridObj.transform.position = new Vector2(grid.GetNode(i, j).GetXPosition(), grid.GetNode(i, j).GetYPosition());
                     gridObj.name = gridObj.transform.position.ToString();
+
+                // Change the color
+                if(!grid.GetNode(i,j).IsWalkable)
+                {
+                    gridObj.GetComponentInChildren<Renderer>().material.SetColor("_Color", Color.black);
+                }
+
                 }
             }
 

@@ -16,12 +16,11 @@ public class Astar : MonoBehaviour
 
 
     /// Search given the 2d array, the start coordinates and the end goal coordinates
-    //TODO: Probably make the grid a container class instead of just being a 2d array since then we won't have to pass the size
-    public void FindPath(PathNode[,] grid, int gridRows, int gridColumns, int startX, int startY, int endX, int endY)
+    public void FindPath(Grid grid, int startX, int startY, int endX, int endY)
     {
-      
-        PathNode beginningNode = grid[startX, startY];
-        PathNode endNode = grid[endX, endY];
+
+        PathNode beginningNode = grid.GetNode(startX, startY);
+        PathNode endNode = grid.GetNode(endX, endY);
 
         //First node in the open list is our starting node obviously
         List<PathNode> openList = new List<PathNode> { beginningNode };
@@ -48,7 +47,27 @@ public class Astar : MonoBehaviour
             //Else remove from the open list since we have checked it, then add to closedList
             openList.Remove(currNode);
             closedList.Add(currNode);
+
+
+
+
+
+
+
+
+
+            //Now go through the neighbours of current node and make sure it's walkable and isn't closed
+            foreach (PathNode node in grid.GetNeighbours(currNode))
+            {
+                if(!closedList.Contains(node))
+                {
+
+                }
+            }
         }
+
+
+        
     }
 
     private void RetracePath(PathNode currNode, PathNode endNode)
@@ -56,24 +75,7 @@ public class Astar : MonoBehaviour
         throw new NotImplementedException();
     }
 
-    private List<PathNode> GetNeighbouringList(PathNode[,] grid, PathNode currNode, int rows, int columns)
-    {
-        List<PathNode> neighbours = new List<PathNode>();
-
-        if(currNode.GetXPosition() - 1 >= 0)
-        {
-            // Left side
-            neighbours.Add(grid[currNode.GetXPosition() - 1, currNode.GetYPosition()]);
-            // Left down
-            if (currNode.GetYPosition() - 1 >= 0)
-                neighbours.Add(grid[currNode.GetXPosition() - 1, currNode.GetYPosition() - 1]);
-            //Left up
-            if (currNode.GetYPosition() + 1 < columns)
-                neighbours.Add(grid[currNode.GetXPosition() - 1, currNode.GetYPosition() + 1]);
-
-
-        }
-    }
+   
 
     private List<PathNode> CalculatePath(PathNode finalNode)
     {

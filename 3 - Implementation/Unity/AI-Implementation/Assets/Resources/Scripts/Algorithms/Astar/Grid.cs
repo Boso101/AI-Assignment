@@ -30,12 +30,44 @@ public class Grid
 
         for (int i = 0; i < rows; i++)
         {
-
-
             for (int j = 0; j < columns; j++)
             {
-                pathNodeGrid[i, j] = new PathNode(i, j);
+                // 50% for the spot to be walkable
+                pathNodeGrid[i, j] = new PathNode(i, j, Random.value > 0.5f);
             }
         }
+    }
+
+    public PathNode GetNode(int row, int column)
+    {
+        return pathNodeGrid[row, column];
+    }
+
+
+    public List<PathNode> GetNeighbours(PathNode node)
+    {
+        // Create neighbour list
+        List<PathNode> neighbours = new List<PathNode>();
+
+        for (int x = -1; x <= 1; x++)
+        {
+            for (int y = -1; y <= 1; y++)
+            {
+                // {0,0} 
+                if (x == 0 && y == 0)
+                    continue;
+                // Offset the current node by var values of x and y for neighbour checks
+                int checkX = node.GetXPosition() + x;
+                int checkY = node.GetYPosition() + y;
+
+                // if our coordinates isn't invalid, add it to the neighbour list
+                if (checkX >= 0 && checkX < rows && checkY >= 0 && checkY < columns)
+                {
+                    neighbours.Add(GetNode(checkX, checkY));
+                }
+            }
+        }
+
+        return neighbours;
     }
 }

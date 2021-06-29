@@ -15,13 +15,17 @@ public class PathNode
     protected int Xposition;
     protected int Yposition;
 
+    protected bool isWalkable;
+
     public int gCost;
     public int hCost;
     public int fCost;
 
-    public PathNode originated;
+    public PathNode parent;
 
-    public PathNode(int row, int column)
+    public bool IsWalkable { get => isWalkable; }
+
+    public PathNode(int row, int column, bool walkable)
     {
         Xposition = row;
         Yposition = column;
@@ -29,11 +33,12 @@ public class PathNode
         // Just make the gCost absurdly high value for now
         gCost = int.MaxValue;
 
-        originated = null;
+        parent = null;
+        isWalkable = walkable;
         CalculateFCost();
     }
 
-    public PathNode(int row, int column, int gCost, int hCost, int fCost)
+    public PathNode(int row, int column, int gCost, int hCost, int fCost, bool walkable)
     {
         Xposition = row;
         Yposition = column;
@@ -42,12 +47,15 @@ public class PathNode
         this.hCost = hCost;
         this.fCost = fCost;
 
-        originated = null;
+        isWalkable = walkable;
+        parent = null;
         CalculateFCost();
 
 
 
     }
+
+
     public int GetXPosition()
     {
         return Xposition;
