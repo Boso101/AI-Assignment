@@ -7,10 +7,6 @@ public class Agent : MonoBehaviour
     protected List<Behaviour> behaviourList;
 
 
-
-
-
-
     public void AddBehaviour(Behaviour behaviour)
     {
         behaviourList.Add(behaviour);
