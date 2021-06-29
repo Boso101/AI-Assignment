@@ -7,7 +7,7 @@ public class Game : MonoBehaviour
     [Header("Settings")]
     public int rows;
     public int columns;
-
+    public float percentageWalkable;
     [SerializeField] protected GameObject gridPrefab;
 
 
@@ -20,7 +20,7 @@ public class Game : MonoBehaviour
 
     private void Start()
     {
-        grid = new Grid(rows, columns, 1f);
+        grid = new Grid(rows, columns, percentageWalkable);
         CreateGridVisual(grid);
 
         //Try Path thing once

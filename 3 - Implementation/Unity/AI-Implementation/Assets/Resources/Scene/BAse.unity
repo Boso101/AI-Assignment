@@ -705,8 +705,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 659f9a5df89435c468aea9865bf8805c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rows: 9
-  columns: 9
+  rows: 32
+  columns: 32
+  percentageWalkable: 0.75
   gridPrefab: {fileID: 8938149747403948541, guid: f850f00551756564cb26a4e04de48757, type: 3}
 --- !u!4 &1674342403
 Transform:
