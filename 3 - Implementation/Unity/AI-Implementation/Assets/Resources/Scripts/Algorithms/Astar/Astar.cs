@@ -42,7 +42,7 @@ public class Astar : MonoBehaviour
             if(currNode == endNode)
             {
                 //Retrace the path and get out of 
-                RetracePath(currNode, endNode);
+                RetracePath(grid, currNode, endNode);
             }
             //Else remove from the open list since we have checked it, then add to closedList
             openList.Remove(currNode);
@@ -57,11 +57,27 @@ public class Astar : MonoBehaviour
 
 
             //Now go through the neighbours of current node and make sure it's walkable and isn't closed
-            foreach (PathNode node in grid.GetNeighbours(currNode))
+            foreach (PathNode neighbour in grid.GetNeighbours(currNode))
             {
-                if(!closedList.Contains(node))
+                if(neighbour.IsWalkable || !closedList.Contains(neighbour))
                 {
+                    // Get the new cost by adding our current cost to the distance cost of the neighbour node
+                    int newNeighbourCost = currNode.gCost + currNode.CalculateDistance(neighbour, STRAIGHT, DIAGONAL);
 
+                    // if our new cost is less than our neighbours cost or our neighbour doesnt exist in the open list
+                    if(newNeighbourCost < neighbour.gCost || !openList.Contains(neighbour))
+                    {
+                        //Update node costs
+                        neighbour.gCost = newNeighbourCost;
+                        neighbour.hCost = neighbour.CalculateDistance(endNode, STRAIGHT, DIAGONAL);
+                        neighbour.parent = currNode;
+
+                        // if it doesnt contain then add it
+                        if(!openList.Contains(neighbour))
+                        {
+                            openList.Add(neighbour);
+                        }
+                    }
                 }
             }
         }
@@ -70,9 +86,21 @@ public class Astar : MonoBehaviour
         
     }
 
-    private void RetracePath(PathNode currNode, PathNode endNode)
+    private void RetracePath(Grid grid, PathNode startNode, PathNode endNode)
     {
-        throw new NotImplementedException();
+        List<PathNode> path = new List<PathNode>();
+        PathNode currentNode = endNode;
+        // Transverse 
+        while (currentNode != startNode)
+        {
+            path.Add(currentNode);
+            currentNode = currentNode.parent;
+        }
+
+        //Reverse it
+        path.Reverse();
+
+        grid.path = path;
     }
 
    

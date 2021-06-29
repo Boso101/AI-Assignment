@@ -80,7 +80,7 @@ public class PathNode
     /// </summary>
     /// <param name="other"></param>
     /// <returns></returns>
-    public void CalculateDistance(PathNode other, int straightCost, int diagonalCost)
+    public int CalculateDistance(PathNode other, int straightCost, int diagonalCost)
     {
         // Differences between our points thus distance
         int xDist = Mathf.Abs(Xposition - other.GetXPosition());
@@ -90,7 +90,7 @@ public class PathNode
         int remainder = Mathf.Abs(xDist - yDist);
 
         // Use the costs to determine the minimum cost
-        hCost = diagonalCost * Mathf.Min(xDist, yDist) + straightCost * remainder;
+        return diagonalCost * Mathf.Min(xDist, yDist) + straightCost * remainder;
 
     }
 }

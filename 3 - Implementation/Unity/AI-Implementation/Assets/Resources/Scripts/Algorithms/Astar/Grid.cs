@@ -15,6 +15,10 @@ public class Grid
     public int rows;
     public int columns;
 
+    //Holds best path
+    public List<PathNode> path;
+
+
     public Grid(int rows, int columns)
     {
         this.rows = rows;
