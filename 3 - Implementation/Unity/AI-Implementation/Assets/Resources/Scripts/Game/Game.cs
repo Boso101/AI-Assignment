@@ -12,22 +12,46 @@ public class Game : MonoBehaviour
 
 
     protected Grid grid;
+    protected Astar algorithm;
+    protected List<GameObject> tileVisuals;
 
 
     private void Start()
     {
-        grid = new Grid(rows, columns);
+        grid = new Grid(rows, columns, 0.65f);
         CreateGridVisual(grid);
+
+        //Try Path thing once
+        algorithm = new Astar();
+
+        algorithm.FindPath(grid, 0, 0, 1, 8);
     }
 
 
+    private void ShowPath()
+    {
+        if (grid.path != null)
+        {
+         
+        }
 
-   
+    }
+
+    private void UpdateVisuals()
+    {
+        foreach(GameObject rend in tileVisuals)
+        {
+            rend.GetComponent<Renderer>().material.SetColor("_Color", grid.GetNode((int)rend.transform.position.x, (int)rend.transform.position.y).Color);
+        }
+    }
+
+  
+
 
     /// <summary>
     /// The visualized version of the grid
     /// </summary>
-        public void CreateGridVisual(Grid grid)
+    public void CreateGridVisual(Grid grid)
         {
         GameObject parent = new GameObject();
         parent.transform.position = Vector3.zero;
@@ -38,17 +62,16 @@ public class Game : MonoBehaviour
 
                 for (int j = 0; j < columns; j++)
                 {
-                    //Instantiate Grid Object 
+                //Instantiate Grid Object 
+                    PathNode node = grid.GetNode(i, j);
                     GameObject gridObj = Instantiate(gridPrefab);
                     gridObj.transform.SetParent(parent.transform);
-                    gridObj.transform.position = new Vector2(grid.GetNode(i, j).GetXPosition(), grid.GetNode(i, j).GetYPosition());
+                    gridObj.transform.position = new Vector2(node.GetXPosition(), node.GetYPosition());
                     gridObj.name = gridObj.transform.position.ToString();
 
-                // Change the color
-                if(!grid.GetNode(i,j).IsWalkable)
-                {
-                    gridObj.GetComponentInChildren<Renderer>().material.SetColor("_Color", Color.black);
-                }
+                    gridObj.GetComponentInChildren<Renderer>().material.SetColor("_Color", node.Color);
+                
+                tileVisuals.Add(gridObj);
 
                 }
             }

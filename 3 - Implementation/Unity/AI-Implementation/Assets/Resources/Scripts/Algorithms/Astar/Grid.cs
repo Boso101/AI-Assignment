@@ -14,15 +14,16 @@ public class Grid
 
     public int rows;
     public int columns;
-
+    public float walkablePercentage;
     //Holds best path
     public List<PathNode> path;
 
 
-    public Grid(int rows, int columns)
+    public Grid(int rows, int columns, float walkPercent)
     {
         this.rows = rows;
         this.columns = columns;
+        walkablePercentage = walkPercent;
         CreateGrid();
     }
 
@@ -37,8 +38,7 @@ public class Grid
         {
             for (int j = 0; j < columns; j++)
             {
-                // 50% for the spot to be walkable
-                pathNodeGrid[i, j] = new PathNode(i, j, Random.value > 0.5f);
+                pathNodeGrid[i, j] = new PathNode(i, j, Random.value <= walkablePercentage) ;
             }
         }
     }

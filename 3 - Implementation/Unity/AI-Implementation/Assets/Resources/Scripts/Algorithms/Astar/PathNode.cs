@@ -24,6 +24,20 @@ public class PathNode
     public PathNode parent;
 
     public bool IsWalkable { get => isWalkable; }
+    public Color Color
+    { 
+    
+    get
+        {
+
+            if (isWalkable) return Color.white;
+            return Color.black;
+
+        }
+    
+    
+    }
+
 
     public PathNode(int row, int column, bool walkable)
     {

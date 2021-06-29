@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Astar : MonoBehaviour
+public class Astar
 {
     //Constants for the costs of moving for priority purposes
 
@@ -12,7 +12,10 @@ public class Astar : MonoBehaviour
     private const int DIAGONAL = 10;
 
 
+    public Astar()
+    {
 
+    }
 
 
     /// Search given the 2d array, the start coordinates and the end goal coordinates
