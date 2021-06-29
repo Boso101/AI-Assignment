@@ -44,12 +44,11 @@ public class PathNode
         Xposition = row;
         Yposition = column;
 
-        // Just make the gCost absurdly high value for now
-        gCost = int.MaxValue;
+   
 
         parent = null;
         isWalkable = walkable;
-        CalculateFCost();
+  
     }
 
     public PathNode(int row, int column, int gCost, int hCost, int fCost, bool walkable)
@@ -63,7 +62,6 @@ public class PathNode
 
         isWalkable = walkable;
         parent = null;
-        CalculateFCost();
 
 
 
@@ -94,7 +92,7 @@ public class PathNode
     /// </summary>
     /// <param name="other"></param>
     /// <returns></returns>
-    public int CalculateDistance(PathNode other, int straightCost, int diagonalCost)
+    public int GetDistance(PathNode other, int straightCost, int diagonalCost)
     {
         // Differences between our points thus distance
         int xDist = Mathf.Abs(Xposition - other.GetXPosition());
@@ -105,6 +103,13 @@ public class PathNode
 
         // Use the costs to determine the minimum cost
         return diagonalCost * Mathf.Min(xDist, yDist) + straightCost * remainder;
+
+        //int dstX = Mathf.Abs(GetXPosition() - other.GetXPosition());
+        //int dstY = Mathf.Abs(GetYPosition() - other.GetYPosition());
+
+        //if (dstX > dstY)
+        //    return straightCost * dstY + diagonalCost * (dstX - dstY);
+        //return straightCost * dstX + diagonalCost * (dstY - dstX);
 
     }
 }

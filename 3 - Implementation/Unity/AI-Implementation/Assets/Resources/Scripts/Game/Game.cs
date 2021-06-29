@@ -20,13 +20,13 @@ public class Game : MonoBehaviour
 
     private void Start()
     {
-        grid = new Grid(rows, columns, 0.65f);
+        grid = new Grid(rows, columns, 1f);
         CreateGridVisual(grid);
 
         //Try Path thing once
         algorithm = new Astar();
-
-        algorithm.FindPath(grid, 0, 0, 1, 8);
+        algorithm.FindPath(grid, 0, 0, 8, 8);
+        ShowPath();
     }
 
 

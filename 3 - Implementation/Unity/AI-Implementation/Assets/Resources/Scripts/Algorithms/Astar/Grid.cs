@@ -58,9 +58,11 @@ public class Grid
         {
             for (int y = -1; y <= 1; y++)
             {
-                // {0,0} 
+                
                 if (x == 0 && y == 0)
                     continue;
+
+
                 // Offset the current node by var values of x and y for neighbour checks
                 int checkX = node.GetXPosition() + x;
                 int checkY = node.GetYPosition() + y;

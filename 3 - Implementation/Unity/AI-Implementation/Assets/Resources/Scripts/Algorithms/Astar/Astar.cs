@@ -3,6 +3,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ MIT License
+
+Copyright (c) 2017 Sebastian Lague
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
+
+// Bits and pieces used from GitHub https://github.com/SebLague/Pathfinding
 public class Astar
 {
     //Constants for the costs of moving for priority purposes
@@ -35,24 +60,24 @@ public class Astar
         HashSet<PathNode> closedList = new HashSet<PathNode>();
 
 
-
-        // Get Lowest costs while we still have open nodes
-        while (openList.Count > 0)
-        {
+            // Get Lowest costs while we still have open nodes
+            while (openList.Count > 0)
+            {
             PathNode currNode = GetLowestFCostNode(openList);
             
-            //Have we reached the end yet?
-            if(currNode == endNode)
-            {
-                //Retrace the path and get out of 
-                RetracePath(grid, currNode, endNode);
-            }
-            //Else remove from the open list since we have checked it, then add to closedList
+          
+           
             openList.Remove(currNode);
             closedList.Add(currNode);
 
 
-
+            //Have we reached the end yet?
+            if (currNode == endNode)
+            {
+                //Retrace the path and get out 
+                RetracePath(grid, beginningNode, endNode);
+                return;
+            }
 
 
 
@@ -65,14 +90,14 @@ public class Astar
                 if(neighbour.IsWalkable || !closedList.Contains(neighbour))
                 {
                     // Get the new cost by adding our current cost to the distance cost of the neighbour node
-                    int newNeighbourCost = currNode.gCost + currNode.CalculateDistance(neighbour, STRAIGHT, DIAGONAL);
+                    int newNeighbourCost = currNode.gCost + currNode.GetDistance(neighbour, STRAIGHT, DIAGONAL);
 
                     // if our new cost is less than our neighbours cost or our neighbour doesnt exist in the open list
                     if(newNeighbourCost < neighbour.gCost || !openList.Contains(neighbour))
                     {
                         //Update node costs
                         neighbour.gCost = newNeighbourCost;
-                        neighbour.hCost = neighbour.CalculateDistance(endNode, STRAIGHT, DIAGONAL);
+                        neighbour.hCost = neighbour.GetDistance(endNode, STRAIGHT, DIAGONAL);
                         neighbour.parent = currNode;
 
                         // if it doesnt contain then add it
@@ -108,10 +133,7 @@ public class Astar
 
    
 
-    private List<PathNode> CalculatePath(PathNode finalNode)
-    {
-        return null;
-    }
+  
 
 
     //Again, should probably use a container for the grid so that the dimensions are with it
@@ -130,7 +152,7 @@ public class Astar
         // Loop through the list and see if we find anything smaller
         for (int i = 1; i < pathNodeList.Count; i++)
         {
-            if(pathNodeList[i].fCost < lowestFCost.fCost)
+            if(pathNodeList[i].fCost < lowestFCost.fCost || pathNodeList[i].fCost == lowestFCost.fCost)
             {
                 lowestFCost = pathNodeList[i];
             }
