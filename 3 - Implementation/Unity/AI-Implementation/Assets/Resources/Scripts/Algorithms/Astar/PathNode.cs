@@ -17,6 +17,8 @@ public class PathNode
     public int hCost;
     public int fCost;
 
+    public PathNode originated;
+
     public PathNode(int row, int column)
     {
         position = new Vector2(row, column);

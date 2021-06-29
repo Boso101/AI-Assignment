@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Astar : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    protected List<PathNode> openList;
+    protected List<PathNode> closedList;
 
-    // Update is called once per frame
-    void Update()
+
+    public List<PathNode> FindPath(PathNode[,] grid, Vector2 startPos, Vector2 endPos)
     {
-        
+        // Following algorithm, we have both an open and close list
+        openList = new List<PathNode>();
+        closedList = new List<PathNode>();
+
     }
 }
