@@ -9,8 +9,8 @@ public class Astar
     //Constants for the costs of moving for priority purposes
 
     // We want to move straight more than diagonally
-    private const int STRAIGHT = 14;
-    private const int DIAGONAL = 10;
+    public const int STRAIGHT = 14;
+    public const int DIAGONAL = 10;
 
 
     public Astar()
@@ -20,7 +20,7 @@ public class Astar
 
 
     /// Search given the 2d array, the start coordinates and the end goal coordinates
-    public void FindPath(Grid grid, int startX, int startY, int endX, int endY)
+    public void FindPath(Grid grid, int startX, int startY, int endX, int endY, int straightCost = STRAIGHT, int diagonalCost = DIAGONAL)
     {
 
         PathNode beginningNode = grid.GetNode(startX, startY);
@@ -69,14 +69,14 @@ public class Astar
                     continue;
                 }
                 // Get the new cost by adding our current cost to the distance cost of the neighbour node
-                int newNeighbourCost = currNode.gCost + currNode.GetDistance(neighbour, STRAIGHT, DIAGONAL);
+                int newNeighbourCost = currNode.gCost + currNode.GetDistance(neighbour, straightCost, diagonalCost);
 
                 // if our new cost is less than our neighbours cost or our neighbour doesnt exist in the open list
                 if (newNeighbourCost < neighbour.gCost || !openList.Contains(neighbour))
                 {
                     //Update node costs
                     neighbour.gCost = newNeighbourCost;
-                    neighbour.hCost = neighbour.GetDistance(endNode, STRAIGHT, DIAGONAL);
+                    neighbour.hCost = neighbour.GetDistance(endNode, straightCost, diagonalCost);
                     neighbour.parent = currNode;
 
                     // if it doesnt contain then add it
