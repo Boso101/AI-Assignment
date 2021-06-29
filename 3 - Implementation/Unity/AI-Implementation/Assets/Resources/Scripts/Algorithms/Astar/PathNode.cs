@@ -44,7 +44,15 @@ public class PathNode
 
 
     }
+    public int GetXPosition()
+    {
+        return Xposition;
+    }
 
+    public int GetYPosition()
+    {
+        return Yposition;
+    }
     public Vector2 GetPosition()
     {
         return new Vector2(Xposition, Yposition);
@@ -53,5 +61,21 @@ public class PathNode
     public void CalculateFCost()
     {
         fCost = gCost + hCost;
+    }
+
+    /// <summary>
+    /// Calculates the distance between this node and another
+    /// </summary>
+    /// <param name="other"></param>
+    /// <returns></returns>
+    public int CalculateDistance(PathNode other)
+    {
+        // Differences between our points thus distance
+        int xDist = Mathf.Abs(Xposition - other.GetXPosition());
+        int yDist = Mathf.Abs(Yposition - other.GetYPosition());
+
+        //Calculate true remainder oncew we have absolute values
+        return Mathf.Abs(xDist - yDist);
+
     }
 }
