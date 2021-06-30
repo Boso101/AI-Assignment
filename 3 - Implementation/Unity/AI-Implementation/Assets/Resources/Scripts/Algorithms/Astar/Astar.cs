@@ -65,7 +65,7 @@ public class Astar
             {
                 if (!neighbour.IsWalkable || closedList.Contains(neighbour))
                 {
-                    //Some sort of debug here
+                    //Skip the bad nodes
                     continue;
                 }
                 // Get the new cost by adding our current cost to the distance cost of the neighbour node
