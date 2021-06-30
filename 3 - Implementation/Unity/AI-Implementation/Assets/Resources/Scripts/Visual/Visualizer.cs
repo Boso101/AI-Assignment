@@ -39,13 +39,14 @@ public class Visualizer : MonoBehaviour
     /// <summary>
     /// Draws the path calculated by the algorithm
     /// </summary>
-    private void ShowPath()
+    private IEnumerator ShowPath()
     {
         if (grid.path != null)
         {
          foreach(PathNode node in grid.path)
             {
                 tileVisuals[node].GetComponentInChildren<Renderer>().material.SetColor("_Color", Color.green);
+                yield return new WaitForSeconds(0.1f);            
             }
         }
 
@@ -179,7 +180,7 @@ public void RecolorImportant()
         {
 
         algorithm.FindPath(grid, start.GetXPosition(), start.GetYPosition(), end.GetXPosition(), end.GetYPosition());
-        ShowPath();
+        StartCoroutine(ShowPath());
         }
 
     }
