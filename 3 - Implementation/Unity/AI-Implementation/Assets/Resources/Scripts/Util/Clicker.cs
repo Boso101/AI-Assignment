@@ -47,7 +47,11 @@ public class Clicker : MonoBehaviour
             {
                 //Set Start Pos
                 PathNode node = visual.Grid.GetNode((int)pos.x, (int)pos.y);
-                if(node != null && node.IsWalkable)visual.start = node;
+                if(node != null && node.IsWalkable && visual.start != node)visual.start = node;
+                else
+                {
+                    visual.start = null;
+                }
                 
             }
             else if (type == "middle")
@@ -63,7 +67,11 @@ public class Clicker : MonoBehaviour
 
                 //Set End Pos
                 PathNode node = visual.Grid.GetNode((int)pos.x, (int)pos.y);
-                if (node != null && node.IsWalkable) visual.end = node;
+                if (node != null && node.IsWalkable && visual.end != node) visual.end = node;
+                else
+                {
+                    visual.end = null;
+                }
             }
 
 
