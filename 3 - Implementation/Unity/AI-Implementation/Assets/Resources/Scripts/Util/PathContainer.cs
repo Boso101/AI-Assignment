@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Agent : MonoBehaviour
+public class PathContainer
 {
-   public static Vector2 playerPosition;
+    public List<PathNode> path;
 }

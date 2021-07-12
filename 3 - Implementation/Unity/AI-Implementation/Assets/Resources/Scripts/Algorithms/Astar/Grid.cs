@@ -16,7 +16,6 @@ public class Grid
     public int columns;
     public float walkablePercentage;
     //Holds best path
-    public List<PathNode> path;
 
 
     public Grid(int rows, int columns, float walkPercent)
@@ -24,6 +23,7 @@ public class Grid
         this.rows = rows;
         this.columns = columns;
         walkablePercentage = walkPercent;
+     
         CreateGrid();
     }
 

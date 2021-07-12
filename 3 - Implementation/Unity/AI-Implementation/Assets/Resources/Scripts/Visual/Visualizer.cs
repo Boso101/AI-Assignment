@@ -20,6 +20,8 @@ public class Visualizer : MonoBehaviour
     //Associate each visual with its data version
     protected Dictionary<PathNode,GameObject> tileVisuals;
 
+    public PathContainer container;
+
     public PathNode start;
     public PathNode end;
 
@@ -28,6 +30,8 @@ public class Visualizer : MonoBehaviour
     private void Start()
     {
         grid = new Grid(rows, columns, percentageWalkable);
+        container = new PathContainer();
+
         CreateGridVisual(grid);
 
         //Try Path thing once
@@ -41,9 +45,9 @@ public class Visualizer : MonoBehaviour
     /// </summary>
     private IEnumerator ShowPath()
     {
-        if (grid.path != null)
+        if (container.path != null)
         {
-         foreach(PathNode node in grid.path)
+         foreach(PathNode node in container.path)
             {
                 tileVisuals[node].GetComponentInChildren<Renderer>().material.SetColor("_Color", Color.green);
                 yield return new WaitForSeconds(0.1f);            
@@ -179,7 +183,7 @@ public void RecolorImportant()
         if(start != null && end != null)
         {
 
-        algorithm.FindPath(grid, start.GetXPosition(), start.GetYPosition(), end.GetXPosition(), end.GetYPosition());
+        algorithm.FindPath(grid, container, start.GetXPosition(), start.GetYPosition(), end.GetXPosition(), end.GetYPosition());
         StartCoroutine(ShowPath());
         }
 

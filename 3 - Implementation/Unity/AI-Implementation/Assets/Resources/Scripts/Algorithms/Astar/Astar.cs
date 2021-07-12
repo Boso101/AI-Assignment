@@ -20,7 +20,7 @@ public class Astar
 
 
     /// Search given the 2d array, the start coordinates and the end goal coordinates
-    public void FindPath(Grid grid, int startX, int startY, int endX, int endY, int straightCost = STRAIGHT, int diagonalCost = DIAGONAL)
+    public void FindPath(Grid grid, PathContainer container, int startX, int startY, int endX, int endY, int straightCost = STRAIGHT, int diagonalCost = DIAGONAL)
     {
 
         PathNode beginningNode = grid.GetNode(startX, startY);
@@ -51,7 +51,7 @@ public class Astar
             if (currNode == endNode)
             {
                 //Retrace the path and get out 
-                RetracePath(grid, beginningNode, endNode);
+                RetracePath(container, beginningNode, endNode);
                 return;
             }
 
@@ -93,7 +93,7 @@ public class Astar
 
     }
 
-    private void RetracePath(Grid grid, PathNode startNode, PathNode endNode)
+    private void RetracePath(PathContainer pathContainer, PathNode startNode, PathNode endNode)
     {
         List<PathNode> path = new List<PathNode>();
         PathNode currentNode = endNode;
@@ -107,7 +107,7 @@ public class Astar
         //Reverse it
         path.Reverse();
 
-        grid.path = path;
+        pathContainer.path = path;
     }
 
 
