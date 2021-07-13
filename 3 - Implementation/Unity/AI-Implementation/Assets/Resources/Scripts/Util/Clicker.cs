@@ -7,6 +7,10 @@ public class Clicker : MonoBehaviour
     protected Game visual;
     public Agent playerAgent;
 
+    public void SetPlayer(Agent agent)
+    {
+        playerAgent = agent;
+    }
 
     private void Awake()
     {

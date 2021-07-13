@@ -96,9 +96,12 @@ public class Game : MonoBehaviour
                 }
             }
 
-        //Spawn Player
-        Instantiate(playerPrefab);
 
+        //Spawn Player
+        GameObject p = Instantiate(playerPrefab);
+
+        //Set Player
+        GameObject.FindObjectOfType<Clicker>().SetPlayer(p.GetComponent<Agent>());
         }
 
  
