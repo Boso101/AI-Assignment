@@ -19,5 +19,14 @@ public class Sensor : MonoBehaviour
     }
 
 
+    // Debug
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, senseRadius);
+    }
 
+    public void SetTarget(GameObject target)
+    {
+        this.target = target;
+    }
 }
