@@ -61,11 +61,19 @@ public class Agent : MonoBehaviour
     /// </summary>
     private void CalculateMovement(Vector2 targetLocation)
     {
-        container.SetPath(pathFinding.FindPath((int)transform.position.x, (int)transform.position.y, (int)targetLocation.x, (int)targetLocation.y, straightCost, diagonalCost);
+        //Call the Find Path function which wil set the path within the container variable
+        pathFinding.FindPath(game, container, (int)transform.position.x, (int)transform.position.y, (int)targetLocation.x, (int)targetLocation.y, straightCost, diagonalCost);
     }
 
     private void TryMove()
     {
+        if(container.Path != null)
+        StartCoroutine(Move(container.GetNextNode().GetPosition()));
+    }
 
+    public void Remove()
+    {
+        currentAgents.Remove(this);
+        Destroy(gameObject);
     }
 }
