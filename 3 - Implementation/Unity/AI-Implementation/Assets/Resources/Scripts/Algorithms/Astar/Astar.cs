@@ -26,6 +26,12 @@ public class Astar
         PathNode beginningNode = grid.GetNode(startX, startY);
         PathNode endNode = grid.GetNode(endX, endY);
 
+        //Checks
+        if(beginningNode == null || endNode == null) { return; }
+
+        if (!endNode.IsWalkable) { return; }
+
+
         //First node in the open list is our starting node obviously
         List<PathNode> openList = new List<PathNode> { beginningNode };
 
