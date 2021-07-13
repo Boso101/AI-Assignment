@@ -72,6 +72,7 @@ public class Agent : MonoBehaviour
 
         if (nextNode != null)
         {
+
             Move(nextNode.GetPosition());
         //StartCoroutine(Move(nextNode.GetPosition()));
         container.Next();
