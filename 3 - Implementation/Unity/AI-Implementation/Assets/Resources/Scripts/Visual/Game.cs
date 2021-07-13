@@ -57,7 +57,7 @@ public class Game : MonoBehaviour
     /// <summary>
     /// Colors everything depending if its walkable or not
     /// </summary>
-    private void UpdateVisuals()
+    public void UpdateVisuals()
     {
         foreach(KeyValuePair<PathNode, GameObject> entry in tileVisuals)
         {
