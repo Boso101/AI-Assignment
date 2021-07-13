@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class Clicker : MonoBehaviour
 {
-    protected Visualizer visual;
+    protected Game visual;
+    public Agent playerAgent;
 
 
     private void Awake()
     {
-        visual = GameObject.FindObjectOfType<Visualizer>();
+        visual = GameObject.FindObjectOfType<Game>();
     }
     private void Update()
     {
@@ -17,23 +18,15 @@ public class Clicker : MonoBehaviour
         if(Input.GetMouseButtonDown(0))
         {
 
-            Debug.Log("Left");
-            SendRayCast("left");
+            SendRayCast();
         }
 
-        else if (Input.GetMouseButtonDown(1))
-        {
-            Debug.Log("Right");
-            SendRayCast("right");
-        }
-        else if (Input.GetKeyDown(KeyCode.E))
-        {
-            SendRayCast("middle");
-        }
+
+
     }
 
 
-    private void SendRayCast(string type)
+    private void SendRayCast()
     {
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
@@ -43,39 +36,15 @@ public class Clicker : MonoBehaviour
             Debug.Log(hit.collider.transform.position);
             Vector2 pos = hit.collider.transform.position;
             // We left clicked so try place start spot
-            if(type == "left")
+            if(playerAgent)
             {
-                //Set Start Pos
-                PathNode node = visual.Grid.GetNode((int)pos.x, (int)pos.y);
-                if(node != null && node.IsWalkable && visual.start != node)visual.start = node;
-                else
-                {
-                    visual.start = null;
-                }
-                
-            }
-            else if (type == "middle")
-            {
-                PathNode node = visual.Grid.GetNode((int)pos.x, (int)pos.y);
-
-                //Invert whatever it is
-                if (node != null) node.IsWalkable = !node.IsWalkable;
-            }
-            else
-            {
-                // We right clicked so try place end spot
-
-                //Set End Pos
-                PathNode node = visual.Grid.GetNode((int)pos.x, (int)pos.y);
-                if (node != null && node.IsWalkable && visual.end != node) visual.end = node;
-                else
-                {
-                    visual.end = null;
-                }
+                playerAgent?.CalculateMovement(pos);
+                return;
             }
 
 
-            visual.RecolorImportant();
+
+        
         }
     }
 

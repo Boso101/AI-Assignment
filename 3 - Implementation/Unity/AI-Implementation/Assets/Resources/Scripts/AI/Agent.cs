@@ -31,7 +31,7 @@ public class Agent : MonoBehaviour
         //TODO: Maybe just dont have an instance of pathfinding for each agent.
         if(pathFinding == null) pathFinding = new Astar();
         if (currentAgents == null) currentAgents = new List<Agent>();
-        if (game == null) game = GameObject.FindObjectOfType<Visualizer>().Grid;
+        if (game == null) game = GameObject.FindObjectOfType<Game>().Grid;
 
 
         currentAgents.Add(this);
@@ -45,12 +45,13 @@ public class Agent : MonoBehaviour
             case AgentState.PATROL:
                 break;
             case AgentState.CHASE:
+                TryMove();
                 break;
 
         }
     }
 
-    public IEnumerator Move(Vector2 newPos)
+    private IEnumerator Move(Vector2 newPos)
     {
         yield return new WaitForSeconds(moveTime);
         transform.position = newPos;
@@ -59,7 +60,7 @@ public class Agent : MonoBehaviour
     /// <summary>
     /// Uses A* to get the path 
     /// </summary>
-    private void CalculateMovement(Vector2 targetLocation)
+    public void CalculateMovement(Vector2 targetLocation)
     {
         //Call the Find Path function which wil set the path within the container variable
         pathFinding.FindPath(game, container, (int)transform.position.x, (int)transform.position.y, (int)targetLocation.x, (int)targetLocation.y, straightCost, diagonalCost);

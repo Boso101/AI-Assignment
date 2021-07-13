@@ -10,10 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 763643446972496943}
   - component: {fileID: 1783260387382271901}
-  - component: {fileID: 4326842642547489576}
   - component: {fileID: 2442528353164268924}
   m_Layer: 9
-  m_Name: EnemyAgent
+  m_Name: PlayerAgent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50,23 +49,6 @@ MonoBehaviour:
   moveTime: 1
   straightCost: 14
   diagonalCost: 10
---- !u!114 &4326842642547489576
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1309845565914142823}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4a60240098e1124899a406a093f6be8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  senseRadius: 3.43
-  detecting:
-    serializedVersion: 2
-    m_Bits: 512
-  detectInterval: 0
 --- !u!61 &2442528353164268924
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -165,7 +147,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: d7aa7a2a26d95b345889807497a62f22, type: 3}
-  m_Color: {r: 0.8207547, g: 0.096787095, b: 0.096787095, a: 1}
+  m_Color: {r: 0.09803922, g: 0.18388864, b: 0.81960785, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
