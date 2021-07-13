@@ -4,25 +4,27 @@ using UnityEngine;
 
 public class Agent : MonoBehaviour
 {
-    public static Vector2 playerPosition;
+    public static List<Agent> currentAgents;
+
+   
     public static Astar pathFinding;
-    protected Vector2 targetLocation;
 
     // How many units do this move per move update
     [SerializeField] protected int unitsPerMove = 1;
+    [SerializeField] protected int moveTime = 1; // Time in seconds before this agent can move to another tile
 
     //path container
     protected PathContainer container;
     
 
-    public void Move(Vector2 newPos)
+    public IEnumerator Move(Vector2 newPos)
     {
+        yield return new WaitForSeconds(moveTime);
         transform.position = newPos;
     }
 
-    private Vector2 CalculateMovement()
+    private  void CalculateMovement()
     {
-        return Vector2.zero;
     }
 
     private void Start()
@@ -31,6 +33,10 @@ public class Agent : MonoBehaviour
 
         //TODO: Maybe just dont have an instance of pathfinding for each agent.
         if(pathFinding == null) pathFinding = new Astar();
+        if (currentAgents == null) currentAgents = new List<Agent>();
+
+
+        currentAgents.Add(this);
     }
     private void Update()
     {

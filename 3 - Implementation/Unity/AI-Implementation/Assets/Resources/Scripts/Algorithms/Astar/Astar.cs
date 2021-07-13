@@ -113,7 +113,7 @@ public class Astar
         //Reverse it
         path.Reverse();
 
-        pathContainer.path = path;
+        pathContainer.SetPath(path);
     }
 
 

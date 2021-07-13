@@ -45,9 +45,9 @@ public class Visualizer : MonoBehaviour
     /// </summary>
     private IEnumerator ShowPath()
     {
-        if (container.path != null)
+        if (container.Path != null)
         {
-         foreach(PathNode node in container.path)
+         foreach(PathNode node in container.Path)
             {
                 tileVisuals[node].GetComponentInChildren<Renderer>().material.SetColor("_Color", Color.green);
                 yield return new WaitForSeconds(0.1f);            
