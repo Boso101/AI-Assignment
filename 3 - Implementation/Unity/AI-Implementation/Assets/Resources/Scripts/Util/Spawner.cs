@@ -32,7 +32,7 @@ public class Spawner : MonoBehaviour
 
     public void SpawnObject(Vector2 pos)
     {
-        Instantiate(selectedSpawnable, pos, Quaternion.identity);
+        if(selectedSpawnable != null)Instantiate(selectedSpawnable, pos, Quaternion.identity);
     }
     private void TrySpawnWall()
     {
