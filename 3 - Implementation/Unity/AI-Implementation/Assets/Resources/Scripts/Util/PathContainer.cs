@@ -15,14 +15,20 @@ public class PathContainer
         this.path = path;
     }
 
-    public PathNode GetNextNode()
+    public void Next()
     {
-        if(currentIndex == path.Count - 1 || currentIndex < 0) return null;
-        PathNode next = path[currentIndex];
+
         currentIndex++;
 
-        return next;
+   
 
+    }
+
+    // Just Returns the next node, doesn't do anything with movement
+    public PathNode ViewNextNode()
+    {
+        if ( path == null || currentIndex >= path.Count || currentIndex < 0) return null;
+        return path[currentIndex];
     }
 
 

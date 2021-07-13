@@ -18,7 +18,7 @@ public class Agent : MonoBehaviour
 
     //path container
     protected PathContainer container;
-    protected AgentState state;
+   [SerializeField] protected AgentState state;
 
     protected Vector2 targetPosition;
 
@@ -51,30 +51,46 @@ public class Agent : MonoBehaviour
         }
     }
 
-    private IEnumerator Move(Vector2 newPos)
+    private void Move(Vector2 newPos)
     {
-        yield return new WaitForSeconds(moveTime);
+       // yield return new WaitForSeconds(moveTime);
         transform.position = newPos;
     }
 
     /// <summary>
     /// Uses A* to get the path 
     /// </summary>
-    public void CalculateMovement(Vector2 targetLocation)
+    public void CalculateMovement(PathNode node)
     {
         //Call the Find Path function which wil set the path within the container variable
-        pathFinding.FindPath(game, container, (int)transform.position.x, (int)transform.position.y, (int)targetLocation.x, (int)targetLocation.y, straightCost, diagonalCost);
+        pathFinding.FindPath(game, container, (int)transform.position.x, (int)transform.position.y, node.GetXPosition(), node.GetYPosition(), straightCost, diagonalCost);
     }
 
     private void TryMove()
     {
-        if(container.Path != null)
-        StartCoroutine(Move(container.GetNextNode().GetPosition()));
+        PathNode nextNode = container.ViewNextNode();
+
+        if (nextNode != null)
+        {
+            Move(nextNode.GetPosition());
+        //StartCoroutine(Move(nextNode.GetPosition()));
+        container.Next();
+        }
+        else
+        {
+            SetState(AgentState.IDLE);
+        }
+
     }
 
     public void Remove()
     {
         currentAgents.Remove(this);
         Destroy(gameObject);
+    }
+
+    public void SetState(AgentState st)
+    {
+        state = st;
     }
 }

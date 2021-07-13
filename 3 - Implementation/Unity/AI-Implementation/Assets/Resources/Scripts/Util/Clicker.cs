@@ -37,18 +37,30 @@ public class Clicker : MonoBehaviour
 
         if (hit.collider && hit.collider.CompareTag("GridComp"))
         {
+
+
             Debug.Log(hit.collider.transform.position);
             Vector2 pos = hit.collider.transform.position;
             // We left clicked so try place start spot
-            if(playerAgent)
+            PathNode node = visual.Grid.GetNode((int)pos.x, (int)pos.y);
+            
+            if (node != null && node.IsWalkable)
             {
-                playerAgent?.CalculateMovement(pos);
+
+           
+
+
+            if (playerAgent)
+            {
+                playerAgent?.CalculateMovement(node);
+                
+                playerAgent.SetState(AgentState.CHASE);
                 return;
+            }
             }
 
 
 
-        
         }
     }
 
