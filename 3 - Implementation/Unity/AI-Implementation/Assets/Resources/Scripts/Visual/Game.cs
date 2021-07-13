@@ -34,6 +34,7 @@ public class Game : MonoBehaviour
 
     private void Start()
     {
+
         grid = new Grid(rows, columns, percentageWalkable);
 
 

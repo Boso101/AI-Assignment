@@ -10,7 +10,8 @@ public class Agent : MonoBehaviour
 
     // How many units do this move per move update
     [SerializeField] protected int unitsPerMove = 1;
-    [SerializeField] protected int moveTime = 1; // Time in seconds before this agent can move to another tile
+    [SerializeField] protected float moveTime = 1; // Time in seconds before this agent can move to another tile
+    protected float timeUntilNextMove;
 
     // Costs for movement
     [SerializeField] protected int straightCost = 14;
@@ -21,6 +22,7 @@ public class Agent : MonoBehaviour
    [SerializeField] protected AgentState state;
 
     protected Vector2 targetPosition;
+    protected bool canMove;
 
    
 
@@ -32,12 +34,13 @@ public class Agent : MonoBehaviour
         if(pathFinding == null) pathFinding = new Astar();
         if (currentAgents == null) currentAgents = new List<Agent>();
         if (game == null) game = GameObject.FindObjectOfType<Game>().Grid;
-
+        timeUntilNextMove = moveTime;
 
         currentAgents.Add(this);
     }
     private void Update()
     {
+        timeUntilNextMove -= Time.deltaTime;
         switch (state)
         {
             case AgentState.IDLE:
@@ -49,13 +52,16 @@ public class Agent : MonoBehaviour
                 break;
 
         }
+ 
     }
 
     private void Move(Vector2 newPos)
     {
-       // yield return new WaitForSeconds(moveTime);
-        transform.position = newPos;
-    }
+        
+            transform.position = newPos;
+            timeUntilNextMove = moveTime;
+        }
+      
 
     /// <summary>
     /// Uses A* to get the path 
@@ -68,14 +74,22 @@ public class Agent : MonoBehaviour
 
     private void TryMove()
     {
+     
         PathNode nextNode = container.ViewNextNode();
 
         if (nextNode != null)
         {
+            if (timeUntilNextMove <= 0)
+            {
 
-            Move(nextNode.GetPosition());
-        //StartCoroutine(Move(nextNode.GetPosition()));
-        container.Next();
+                Move(nextNode.GetPosition());
+                //StartCoroutine(Move(nextNode.GetPosition()));
+                container.Next();
+            }
+            else
+            {
+                return;
+            }
         }
         else
         {
