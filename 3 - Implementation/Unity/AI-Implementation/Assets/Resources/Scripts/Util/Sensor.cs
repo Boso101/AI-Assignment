@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Sensor : MonoBehaviour
 {
@@ -10,7 +11,12 @@ public class Sensor : MonoBehaviour
 
     protected GameObject target;
 
+    public UnityEvent OnSeePlayer;
 
+    private void Start()
+    {
+        InvokeRepeating(nameof(Detect), 1, detectInterval);
+    }
 
     public GameObject Target { get => target; }
     public void Detect()
@@ -24,6 +30,8 @@ public class Sensor : MonoBehaviour
             if (coll.gameObject.tag == "Player")
             {
                 SetTarget(coll.gameObject);
+                OnSeePlayer?.Invoke();
+                return;
             }
 
         }
@@ -39,5 +47,10 @@ public class Sensor : MonoBehaviour
     public void SetTarget(GameObject target)
     {
         this.target = target;
+    }
+
+    private void OnDestroy()
+    {
+        StopAllCoroutines();
     }
 }

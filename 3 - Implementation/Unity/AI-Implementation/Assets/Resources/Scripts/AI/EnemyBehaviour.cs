@@ -7,8 +7,13 @@ public class EnemyBehaviour : BaseBehaviour
     protected Sensor sensor;
 
 
-    private void Update()
+public void GoToTarget()
     {
-        
+        if(sensor.Target)
+        {
+            Vector2 enemyPos = sensor.Target.transform.position;
+            TryMoveTo(level.GetNode((int)enemyPos.x, (int)enemyPos.y));
+
+        }
     }
 }

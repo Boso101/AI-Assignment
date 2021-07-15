@@ -4,8 +4,16 @@ using UnityEngine;
 
 public class BaseBehaviour : MonoBehaviour
 {
+    protected static Grid level;
+
     protected Agent agent;
     public Agent Agent { get => agent;  }
+
+
+    private void Awake()
+    {
+        if(level == null) level = GameObject.FindObjectOfType<Game>().Grid;
+    }
     public void TryMoveTo(PathNode node)
     {
         agent.SetDestination(node);
@@ -15,4 +23,6 @@ public class BaseBehaviour : MonoBehaviour
     {
         agent.Remove();
     }
+
+    
 }
