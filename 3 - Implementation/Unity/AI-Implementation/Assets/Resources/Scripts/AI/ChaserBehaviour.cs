@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBehaviour : BaseBehaviour
+public class ChaserBehaviour : BaseBehaviour
 {
     protected Sensor sensor;
 
-
-public void GoToTarget()
+    private void Awake()
     {
-        if(sensor.Target)
+        sensor = GetComponent<Sensor>();
+    }
+    public void GoToTarget()
+    {
+        if(sensor?.Target)
         {
             Vector2 enemyPos = sensor.Target.transform.position;
             TryMoveTo(level.GetNode((int)enemyPos.x, (int)enemyPos.y));
