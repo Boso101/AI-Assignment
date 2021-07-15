@@ -18,6 +18,12 @@ public class ChaserBehaviour : BaseBehaviour
             TryMoveTo(level.GetNode((int)enemyPos.x, (int)enemyPos.y));
 
         }
+        else
+        {
+            // Go to last known pos
+            Vector2 lastPos = sensor.LastPosition;
+            TryMoveTo(level.GetNode((int)lastPos.x, (int)lastPos.y));
+        }
     }
     private void Update()
     {

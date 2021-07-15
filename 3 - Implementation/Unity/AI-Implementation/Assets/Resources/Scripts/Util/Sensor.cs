@@ -20,6 +20,7 @@ public class Sensor : MonoBehaviour
     }
 
     public GameObject Target { get => target; }
+    public Vector2 LastPosition { get => lastKnownPosition; }
     public void Detect()
     {
         // Circle Raycast and go after player

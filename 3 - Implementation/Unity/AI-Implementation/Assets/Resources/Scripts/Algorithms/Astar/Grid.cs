@@ -17,6 +17,12 @@ public class Grid
     public float walkablePercentage;
     //Holds best path
 
+    public PathNode RandomSpot(Vector2 origin, float distance)
+    {
+        Vector2 randomDirection = UnityEngine.Random.insideUnitSphere * distance;
+        randomDirection += origin;
+        return GetNode((int)randomDirection.x, (int)randomDirection.y);
+    }
 
     public Grid(int rows, int columns, float walkPercent)
     {
@@ -45,7 +51,9 @@ public class Grid
 
     public PathNode GetNode(int row, int column)
     {
+   
         return pathNodeGrid[row, column];
+  
     }
 
 

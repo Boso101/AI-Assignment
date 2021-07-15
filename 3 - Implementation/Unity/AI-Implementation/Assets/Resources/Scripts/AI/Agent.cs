@@ -11,6 +11,7 @@ public class Agent : MonoBehaviour
     // How many units do this move per move update
     [SerializeField] protected int unitsPerMove = 1;
     [SerializeField] protected float moveTime = 1; // Time in seconds before this agent can move to another tile
+    [SerializeField] protected float patrolDistance = 4f;
     protected float timeUntilNextMove;
 
     // Costs for movement
@@ -46,6 +47,7 @@ public class Agent : MonoBehaviour
             case AgentState.IDLE:
                 break;
             case AgentState.PATROL:
+                Patrol();
                 break;
             case AgentState.CHASE:
                 TryMove();
@@ -75,7 +77,7 @@ public class Agent : MonoBehaviour
     {
         //Call the Find Path function which wil set the path within the container variable
         pathFinding.FindPath(game, container, (int)transform.position.x, (int)transform.position.y, node.GetXPosition(), node.GetYPosition(), straightCost, diagonalCost);
-        targetPosition = container.Path[container.Path.Count - 1].GetPosition();
+        if (container.ViewLastNode() != null) targetPosition = container.ViewLastNode().GetPosition();
     }
 
     public void SetDestination(PathNode node)
@@ -87,7 +89,7 @@ public class Agent : MonoBehaviour
 
     public void Patrol()
     {
-        
+       SetDestination(game.RandomSpot(transform.position, patrolDistance));
         
     }
     private void TryMove()
@@ -127,4 +129,6 @@ public class Agent : MonoBehaviour
     {
         state = st;
     }
+
+  
 }

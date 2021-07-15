@@ -49,9 +49,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitsPerMove: 1
   moveTime: 0.7
+  patrolDistance: 4
   straightCost: 14
   diagonalCost: 10
-  state: 0
+  state: 1
 --- !u!114 &4326842642547489576
 MonoBehaviour:
   m_ObjectHideFlags: 0

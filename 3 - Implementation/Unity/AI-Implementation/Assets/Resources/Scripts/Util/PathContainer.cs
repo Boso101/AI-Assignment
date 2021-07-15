@@ -31,5 +31,21 @@ public class PathContainer
         return path[currentIndex];
     }
 
+    public PathNode ViewPreviousNode()
+    {
+        if (path == null || currentIndex >= path.Count || currentIndex < 0) return null;
+        return path[currentIndex - 1];
+    }
+
+    public PathNode ViewFirstNode()
+    {
+        return path[0];
+    }
+
+    public PathNode ViewLastNode()
+    {
+        return path[path.Count - 1];
+    }
+
 
 }

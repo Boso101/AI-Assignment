@@ -101,8 +101,9 @@ public class Game : MonoBehaviour
         //Spawn Player
         GameObject p = Instantiate(playerPrefab);
 
-        //spawn enemy
-        Instantiate(enemyPrefab).transform.position = new Vector2(5,5);
+
+
+
 
 
         //Set Player
