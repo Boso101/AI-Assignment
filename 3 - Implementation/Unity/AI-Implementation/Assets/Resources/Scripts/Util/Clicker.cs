@@ -54,7 +54,7 @@ public class Clicker : MonoBehaviour
             {
                 playerAgent?.SetDestination(node);
                 
-                playerAgent.SetState(AgentState.CHASE);
+               
                 return;
             }
             }

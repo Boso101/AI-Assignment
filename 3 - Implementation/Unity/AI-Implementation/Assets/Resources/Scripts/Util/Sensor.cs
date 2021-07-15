@@ -12,10 +12,21 @@ public class Sensor : MonoBehaviour
 
 
 
-
+    public GameObject Target { get => target; }
     public void Detect()
     {
         // Circle Raycast and go after player
+       Collider2D[] potentialTargs =  Physics2D.OverlapCircleAll(transform.position, senseRadius);
+
+        //check for player
+        foreach (Collider2D coll in potentialTargs)
+        {
+            if (coll.gameObject.tag == "Player")
+            {
+                SetTarget(coll.gameObject);
+            }
+
+        }
     }
 
 

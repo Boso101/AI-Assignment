@@ -66,10 +66,17 @@ public class Agent : MonoBehaviour
     /// <summary>
     /// Uses A* to get the path 
     /// </summary>
-    public void SetDestination(PathNode node)
+    private void CalculatePath(PathNode node)
     {
         //Call the Find Path function which wil set the path within the container variable
         pathFinding.FindPath(game, container, (int)transform.position.x, (int)transform.position.y, node.GetXPosition(), node.GetYPosition(), straightCost, diagonalCost);
+    }
+
+    public void SetDestination(PathNode node)
+    {
+        CalculatePath(node);
+        SetState(AgentState.CHASE);
+
     }
 
     private void TryMove()
