@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitsPerMove: 1
-  moveTime: 1
+  moveTime: 0.7
   straightCost: 14
   diagonalCost: 10
   state: 0
@@ -64,7 +64,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4a60240098e1124899a406a093f6be8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  senseRadius: 7.79
+  senseRadius: 5
   detecting:
     serializedVersion: 2
     m_Bits: 512

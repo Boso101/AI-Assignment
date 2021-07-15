@@ -13,6 +13,7 @@ public class BaseBehaviour : MonoBehaviour
     private void Awake()
     {
         if(level == null) level = GameObject.FindObjectOfType<Game>().Grid;
+        agent = GetComponent<Agent>();
     }
     public void TryMoveTo(PathNode node)
     {

@@ -10,6 +10,7 @@ public class Sensor : MonoBehaviour
     [SerializeField] protected float detectInterval;
 
     protected GameObject target;
+    protected Vector2 lastKnownPosition;
 
     public UnityEvent OnSeePlayer;
 
@@ -35,6 +36,8 @@ public class Sensor : MonoBehaviour
             }
 
         }
+
+        SetTarget(null);
     }
 
 
@@ -52,5 +55,13 @@ public class Sensor : MonoBehaviour
     private void OnDestroy()
     {
         StopAllCoroutines();
+    }
+
+    private void FixedUpdate()
+    {
+        if (target)
+        {
+            lastKnownPosition = target.transform.position;
+        }
     }
 }

@@ -6,17 +6,24 @@ public class ChaserBehaviour : BaseBehaviour
 {
     protected Sensor sensor;
 
-    private void Awake()
+    private void Start()
     {
         sensor = GetComponent<Sensor>();
     }
     public void GoToTarget()
     {
-        if(sensor?.Target)
+        if(sensor != null && sensor.Target != null)
         {
             Vector2 enemyPos = sensor.Target.transform.position;
             TryMoveTo(level.GetNode((int)enemyPos.x, (int)enemyPos.y));
 
+        }
+    }
+    private void Update()
+    {
+        if (sensor.Target == null)
+        {
+            
         }
     }
 }

@@ -55,6 +55,11 @@ public class Agent : MonoBehaviour
  
     }
 
+    public bool ReachedDestination()
+    {
+        return (Vector2)transform.position == targetPosition;
+    }
+
     private void Move(Vector2 newPos)
     {
         
@@ -70,6 +75,7 @@ public class Agent : MonoBehaviour
     {
         //Call the Find Path function which wil set the path within the container variable
         pathFinding.FindPath(game, container, (int)transform.position.x, (int)transform.position.y, node.GetXPosition(), node.GetYPosition(), straightCost, diagonalCost);
+        targetPosition = container.Path[container.Path.Count - 1].GetPosition();
     }
 
     public void SetDestination(PathNode node)
@@ -79,6 +85,11 @@ public class Agent : MonoBehaviour
 
     }
 
+    public void Patrol()
+    {
+        
+        
+    }
     private void TryMove()
     {
      
@@ -86,11 +97,12 @@ public class Agent : MonoBehaviour
 
         if (nextNode != null)
         {
+
+            //is it time to move again
             if (timeUntilNextMove <= 0)
             {
-
+                // Begin moving
                 Move(nextNode.GetPosition());
-                //StartCoroutine(Move(nextNode.GetPosition()));
                 container.Next();
             }
             else
