@@ -72,6 +72,9 @@ public class Game : MonoBehaviour
     /// <summary>
     /// The visualized version of the grid
     /// </summary>
+    /// 
+
+    //Not the most efficient solution, but it works for the scope of this project
     public void CreateGridVisual(Grid grid)
         {
         GameObject parent = new GameObject();
@@ -91,7 +94,7 @@ public class Game : MonoBehaviour
                     gridObj.name = gridObj.transform.position.ToString();
 
                     gridObj.GetComponentInChildren<Renderer>().material.SetColor("_Color", node.Color);
-                
+                // Add to dictionary with the node as the key and the visual as the value
                 tileVisuals.Add(node, gridObj);
 
                 }
