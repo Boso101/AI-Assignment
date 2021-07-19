@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class CreatePreview : MonoBehaviour
 {
-    public GameObject objectToPreview;
+  
 
 
-
-    public void CreateObjectPreview(Vector3 position)
+    public void CreateObjectPreview(GameObject objectToPreview, Vector3 position)
     {
         GameObject preview = Instantiate(objectToPreview, position, Quaternion.identity);
 
