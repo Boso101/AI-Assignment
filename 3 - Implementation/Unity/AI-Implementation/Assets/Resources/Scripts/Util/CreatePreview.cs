@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CreatePreview : MonoBehaviour
 {
@@ -18,8 +19,14 @@ public class CreatePreview : MonoBehaviour
         }
     }
 
+    public void CreateObjectPreviewSprite(SpriteRenderer spr, Image img)
+    {
+        img.sprite = spr.sprite;
+        img.color = spr.color;
+    }
+
     public void Clear()
     {
-        Destroy(spawnedObject);
+        if(spawnedObject)Destroy(spawnedObject);
     }
 }

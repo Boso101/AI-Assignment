@@ -9,6 +9,7 @@ public class Spawner : MonoBehaviour
     public GameObject[] spawnables;
     protected int spawnIndex = 0;
     [SerializeField] protected Transform spawnPos;
+    [SerializeField] protected Image objSprite;
     protected CreatePreview preview;
 
     [Header("UI Stuff")]
@@ -28,7 +29,7 @@ public class Spawner : MonoBehaviour
         if (preview.spawnedObject)
             preview.Clear();
         
-        preview.CreateObjectPreview(GetCurrentSpawnable(), spawnPos.position);
+        preview.CreateObjectPreviewSprite(GetCurrentSpawnable().GetComponentInChildren<SpriteRenderer>(), objSprite);
     }
 
     private void Update()
