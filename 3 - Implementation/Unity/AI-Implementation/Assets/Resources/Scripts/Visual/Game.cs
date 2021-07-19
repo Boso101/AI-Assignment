@@ -32,7 +32,7 @@ public class Game : MonoBehaviour
 
     public Grid Grid { get => grid; }
 
-    private void Start()
+    private void Awake()
     {
 
         grid = new Grid(rows, columns, percentageWalkable);
@@ -41,7 +41,7 @@ public class Game : MonoBehaviour
         
         CreateGridVisual(grid);
         UpdateVisuals();
-       
+        SpawnPlayer();
 
     }
 
@@ -101,6 +101,13 @@ public class Game : MonoBehaviour
             }
 
 
+        }
+
+ 
+
+    public void SpawnPlayer()
+    {
+
         //Spawn Player
         GameObject p = Instantiate(playerPrefab);
 
@@ -111,11 +118,7 @@ public class Game : MonoBehaviour
 
         //Set Player
         GameObject.FindObjectOfType<Clicker>().SetPlayer(p.GetComponent<BaseBehaviour>());
-        }
-
- 
-
-
+    }
 
     public void Clear()
     {
