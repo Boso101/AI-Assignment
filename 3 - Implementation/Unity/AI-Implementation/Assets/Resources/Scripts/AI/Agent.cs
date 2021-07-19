@@ -25,6 +25,9 @@ public class Agent : MonoBehaviour
     protected bool canMove;
 
    public float MoveTime { get => moveTime; set => moveTime = value; }
+   public int StraightCost { get => straightCost; set => straightCost = value; }
+    public int DiagonalCost { get => diagonalCost; set => diagonalCost = value; }
+
 
     private void Start()
     {
