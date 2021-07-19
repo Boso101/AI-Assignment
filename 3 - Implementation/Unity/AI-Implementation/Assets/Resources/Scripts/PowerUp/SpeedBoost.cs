@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class SpeedBoost : PowerUp
 {
-    [SerializeField] protected float multiplier;
+    [SerializeField] protected float divisor;
     public override void OnAgentEnter(Agent agent)
     {
-        agent.MoveTime /= multiplier;
+        agent.MoveTime /= divisor;
         if(agent.MoveTime < 0)
         {
             agent.MoveTime = 0;
