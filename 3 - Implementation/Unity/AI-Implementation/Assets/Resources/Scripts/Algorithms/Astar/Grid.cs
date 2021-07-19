@@ -51,9 +51,16 @@ public class Grid
 
     public PathNode GetNode(int row, int column)
     {
-   
+   try
+        {
+
         return pathNodeGrid[row, column];
-  
+        }
+
+catch
+        {
+            return null;
+        }
     }
 
 

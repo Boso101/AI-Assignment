@@ -46,9 +46,17 @@ public class Agent : MonoBehaviour
         switch (state)
         {
             case AgentState.IDLE:
+
+                //Not good but whatever
+                if (!CompareTag("Player") && targetPosition == (Vector2)transform.position)
+                {
+                    SetState(AgentState.PATROL);
+                }
                 break;
             case AgentState.PATROL:
                 Patrol();
+                
+               
                 break;
             case AgentState.CHASE:
                 TryMove();
@@ -77,6 +85,9 @@ public class Agent : MonoBehaviour
     private void CalculatePath(PathNode node)
     {
         //Call the Find Path function which wil set the path within the container variable
+        if(node != null)
+        {
+
         pathFinding.FindPath(game, container, (int)transform.position.x, (int)transform.position.y, node.GetXPosition(), node.GetYPosition(), straightCost, diagonalCost);
         if (container.Path != null && container.ViewLastNode() != null) 
             targetPosition = container.ViewLastNode().GetPosition();
@@ -84,6 +95,9 @@ public class Agent : MonoBehaviour
         {
             return;
         }
+
+        }
+
     }
 
     public void SetDestination(PathNode node)
@@ -130,5 +144,6 @@ public class Agent : MonoBehaviour
         state = st;
     }
 
+    
   
 }

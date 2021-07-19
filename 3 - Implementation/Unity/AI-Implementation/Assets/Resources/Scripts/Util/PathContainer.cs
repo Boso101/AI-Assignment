@@ -44,7 +44,10 @@ public class PathContainer
 
     public PathNode ViewLastNode()
     {
+        if(path != null)
         return path[path.Count - 1];
+        return null;
+    
     }
 
 
