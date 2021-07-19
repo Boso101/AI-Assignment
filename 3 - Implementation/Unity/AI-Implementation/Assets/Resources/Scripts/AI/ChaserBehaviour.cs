@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ChaserBehaviour : BaseBehaviour
 {
-    public const int MAX_CHASERS_AT_TIME = 26;
+    public const int MAX_CHASERS_AT_TIME = 150;
 
     protected static List<ChaserBehaviour> chaserEntitys;
 
@@ -25,6 +25,7 @@ public class ChaserBehaviour : BaseBehaviour
     private void Awake()
     {
         AwakeFunction();
+        Debug.Log("Chasers: " + chaserEntitys.Count);
 
     }
 
@@ -74,7 +75,7 @@ public class ChaserBehaviour : BaseBehaviour
         {
 
         Vector2 enemyPos = sensor.Target.transform.position;
-            if(chaserEntitys.Count <= 26)
+            if (chaserEntitys.Count <= MAX_CHASERS_AT_TIME)
             {
                 foreach (ChaserBehaviour chaser in chaserEntitys)
                 {
@@ -88,6 +89,19 @@ public class ChaserBehaviour : BaseBehaviour
                         chaser.TryMoveTo(level.GetNode((int)enemyPos.x, (int)enemyPos.y));
 
                 }
+            }
+            else
+            {
+
+                //Only order 26
+                for (int i = 0; i < MAX_CHASERS_AT_TIME; i++)
+                {
+                    if(chaserEntitys[i].canBlackBoard)
+                    {
+                        chaserEntitys[i].TryMoveTo(level.GetNode((int)enemyPos.x, (int)enemyPos.y));
+                    }
+                }
+
             }
         
         }

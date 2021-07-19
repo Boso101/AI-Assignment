@@ -49,7 +49,7 @@ public class PathContainer
             return null;
         }
 
-        Debug.Log(path.Count);
+
         return path[path.Count - 1];
         
     

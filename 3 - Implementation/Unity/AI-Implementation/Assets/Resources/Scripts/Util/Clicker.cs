@@ -39,7 +39,7 @@ public class Clicker : MonoBehaviour
         {
 
 
-            Debug.Log(hit.collider.transform.position);
+
             Vector2 pos = hit.collider.transform.position;
             // We left clicked so try place start spot
             PathNode node = visual.Grid.GetNode((int)pos.x, (int)pos.y);
