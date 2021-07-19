@@ -24,7 +24,7 @@ public class Agent : MonoBehaviour
     protected Vector2 targetPosition;
     protected bool canMove;
 
-   
+   public float MoveTime { get => moveTime; set => moveTime = value; }
 
     private void Start()
     {
