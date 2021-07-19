@@ -8,6 +8,10 @@ public class SpeedBoost : PowerUp
     public override void OnAgentEnter(Agent agent)
     {
         agent.MoveTime /= multiplier;
+        if(agent.MoveTime < 0)
+        {
+            agent.MoveTime = 0;
+        }
         Destroy(gameObject);
     }
 }
