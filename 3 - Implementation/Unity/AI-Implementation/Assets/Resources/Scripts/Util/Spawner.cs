@@ -1,18 +1,35 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Spawner : MonoBehaviour
 {
     private Game game;
     public GameObject[] spawnables;
     protected int spawnIndex = 0;
+    [SerializeField] protected Transform spawnPos;
+    protected CreatePreview preview;
+
+    [Header("UI Stuff")]
+    public Text objectName;
+    
 
     private void Awake()
     {
         game = GameObject.FindObjectOfType<Game>();
+        preview = GetComponent<CreatePreview>();
+        UpdateUI();
     }
 
+    public void UpdateUI()
+    {
+        objectName.text = GetCurrentSpawnable().name;
+        if (preview.spawnedObject)
+            preview.Clear();
+        
+        preview.CreateObjectPreview(GetCurrentSpawnable(), spawnPos.position);
+    }
 
     private void Update()
     {
@@ -75,6 +92,11 @@ public class Spawner : MonoBehaviour
         {
             spawnIndex = 0;
         }
+    }
+
+    public GameObject GetCurrentSpawnable()
+    {
+        return spawnables[spawnIndex];
     }
 
 }

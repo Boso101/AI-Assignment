@@ -65,7 +65,7 @@ public class Agent : MonoBehaviour
         
             transform.position = newPos;
             timeUntilNextMove = moveTime;
-        }
+    }
       
 
     /// <summary>

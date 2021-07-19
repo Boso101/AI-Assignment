@@ -10,7 +10,7 @@ public class ChaserBehaviour : BaseBehaviour
 
     private void OnDestroy()
     {
-        Die();
+        Remove();
     }
 
     private void Start()
@@ -71,9 +71,6 @@ public class ChaserBehaviour : BaseBehaviour
 
     }
 
-    public void Die()
-    {
-        chaserEntitys.Remove(this);
-    }
+   
 
 }
