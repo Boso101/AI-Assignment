@@ -29,7 +29,13 @@ public class Sensor : MonoBehaviour
         //check for player
         foreach (Collider2D coll in potentialTargs)
         {
-            if (coll.gameObject.tag == "Player")
+            if(coll.gameObject.CompareTag("PowerUp"))
+            {
+                SetTarget(coll.gameObject);
+                OnSeePlayer?.Invoke();
+                return;
+            }
+            else if (coll.gameObject.CompareTag("Player"))
             {
                 SetTarget(coll.gameObject);
                 OnSeePlayer?.Invoke();
