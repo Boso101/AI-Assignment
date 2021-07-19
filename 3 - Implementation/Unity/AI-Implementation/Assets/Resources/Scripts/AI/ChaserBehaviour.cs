@@ -8,6 +8,8 @@ public class ChaserBehaviour : BaseBehaviour
 
     protected Sensor sensor;
 
+    public bool canBlackBoard = true; // Can this chaser listen to other chasers?
+
     private void OnDestroy()
     {
         Remove();
@@ -20,10 +22,16 @@ public class ChaserBehaviour : BaseBehaviour
 
     private void Awake()
     {
+        AwakeFunction();
+
+    }
+
+    public override void AwakeFunction()
+    {
+        base.AwakeFunction();
         sensor = GetComponent<Sensor>();
         if (chaserEntitys == null) chaserEntitys = new List<ChaserBehaviour>();
         chaserEntitys.Add(this);
-
     }
     public void GoToTarget()
     {
@@ -62,6 +70,8 @@ public class ChaserBehaviour : BaseBehaviour
             {
                 continue;
             }
+
+            if(chaser.canBlackBoard)
             //Get them to move in about the right area
             chaser.TryMoveTo(level.GetNode((int)enemyPos.x, (int)enemyPos.y));
             

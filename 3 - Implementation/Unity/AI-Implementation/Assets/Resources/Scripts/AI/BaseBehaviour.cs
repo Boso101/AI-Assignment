@@ -9,12 +9,17 @@ public class BaseBehaviour : MonoBehaviour
     protected Agent agent;
     public Agent Agent { get => agent;  }
 
+    public virtual void AwakeFunction()
+    {
+        if (level == null) level = GameObject.FindObjectOfType<Game>().Grid;
+        agent = GetComponent<Agent>();
+    }
 
     private void Awake()
     {
-        if(level == null) level = GameObject.FindObjectOfType<Game>().Grid;
-        agent = GetComponent<Agent>();
+        AwakeFunction();
     }
+
     public void TryMoveTo(PathNode node)
     {
         agent.SetDestination(node);

@@ -37,7 +37,26 @@ public class Spawner : MonoBehaviour
         // Spawn GameObjects
         if(Input.GetMouseButtonDown(1))
         {
-            SpawnObject(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
+
+
+            if (hit.collider && hit.collider.CompareTag("GridComp"))
+            {
+
+
+                Debug.Log(hit.collider.transform.position);
+                Vector2 pos = hit.collider.transform.position;
+                // We left clicked so try place start spot
+                PathNode node = game.Grid.GetNode((int)pos.x, (int)pos.y);
+                if(node.IsWalkable)
+                SpawnObject(new Vector2(node.GetXPosition(), node.GetYPosition()));
+
+
+
+
+
+            }
         }
 
 

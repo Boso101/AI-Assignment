@@ -75,7 +75,12 @@ public class Agent : MonoBehaviour
     {
         //Call the Find Path function which wil set the path within the container variable
         pathFinding.FindPath(game, container, (int)transform.position.x, (int)transform.position.y, node.GetXPosition(), node.GetYPosition(), straightCost, diagonalCost);
-        if (container.ViewLastNode() != null) targetPosition = container.ViewLastNode().GetPosition();
+        if (container.ViewLastNode() != null) 
+            targetPosition = container.ViewLastNode().GetPosition();
+        else
+        {
+            return;
+        }
     }
 
     public void SetDestination(PathNode node)
