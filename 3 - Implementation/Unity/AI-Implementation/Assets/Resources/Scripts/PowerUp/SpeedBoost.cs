@@ -7,7 +7,7 @@ public class SpeedBoost : PowerUp
     [SerializeField] protected float multiplier;
     public override void OnAgentEnter(Agent agent)
     {
-        agent.MoveTime *= multiplier;
+        agent.MoveTime /= multiplier;
         Destroy(gameObject);
     }
 }
