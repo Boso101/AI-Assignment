@@ -85,4 +85,21 @@ public class Grid
 
         return neighbours;
     }
+
+    /// <summary>
+    /// Clear grid by making all spaces walakable
+    /// </summary>
+    public void ClearGrid()
+    {
+        for(int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < columns; j++)
+            {
+
+
+                GetNode(i, j).IsWalkable = true;
+
+            }
+        }
+    }
 }
