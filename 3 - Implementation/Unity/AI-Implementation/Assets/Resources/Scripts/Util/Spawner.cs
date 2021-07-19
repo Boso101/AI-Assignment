@@ -81,7 +81,7 @@ public class Spawner : MonoBehaviour
         spawnIndex++;
         if(spawnIndex >= spawnables.Length)
         {
-            spawnIndex = spawnables.Length - 1;
+            spawnIndex = 0;
         }
 
     }
@@ -91,7 +91,7 @@ public class Spawner : MonoBehaviour
         spawnIndex--;
         if(spawnIndex < 0)
         {
-            spawnIndex = 0;
+            spawnIndex = spawnables.Length - 1;
         }
     }
 
@@ -99,5 +99,8 @@ public class Spawner : MonoBehaviour
     {
         return spawnables[spawnIndex];
     }
-
+    public void CreateMousePreview()
+    {
+        preview.CreateObjectPreview(GetCurrentSpawnable());
+    }
 }

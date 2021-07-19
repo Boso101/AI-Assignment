@@ -5,12 +5,11 @@ using UnityEngine.UI;
 
 public class CreatePreview : MonoBehaviour
 {
-    public Transform position;
     public GameObject spawnedObject;
 
-    public void CreateObjectPreview(GameObject objectToPreview, Vector3 pos)
+    public void CreateObjectPreview(GameObject objectToPreview)
     {
-        GameObject spawnedObject = Instantiate(objectToPreview, pos, Quaternion.identity);
+        GameObject spawnedObject = Instantiate(objectToPreview);
 
         //Delete all monobehaviours
         foreach (MonoBehaviour behaviour in spawnedObject.GetComponents<MonoBehaviour>())
@@ -28,5 +27,13 @@ public class CreatePreview : MonoBehaviour
     public void Clear()
     {
         if(spawnedObject)Destroy(spawnedObject);
+    }
+
+    private void Update()
+    {
+        if(spawnedObject)
+        {
+            spawnedObject.transform.position = Input.mousePosition;
+        }
     }
 }

@@ -13,7 +13,12 @@ public class ChaserBehaviour : BaseBehaviour
         Remove();
     }
 
-    private void Start()
+    private void OnDisable()
+    {
+        Remove();
+    }
+
+    private void Awake()
     {
         sensor = GetComponent<Sensor>();
         if (chaserEntitys == null) chaserEntitys = new List<ChaserBehaviour>();
@@ -35,13 +40,7 @@ public class ChaserBehaviour : BaseBehaviour
             TryMoveTo(level.GetNode((int)lastPos.x, (int)lastPos.y));
         }
     }
-    private void Update()
-    {
-        if (sensor.Target == null)
-        {
 
-        }
-    }
 
 
     public void Remove()
