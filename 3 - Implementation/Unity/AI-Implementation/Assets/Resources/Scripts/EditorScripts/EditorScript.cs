@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// This will do but it isn't really dynamic... Only works with BaseBehaviour and ChaserBehaviour
+/// </summary>
 public class EditorScript : MonoBehaviour
 {
     protected static Agent targetAgent;
