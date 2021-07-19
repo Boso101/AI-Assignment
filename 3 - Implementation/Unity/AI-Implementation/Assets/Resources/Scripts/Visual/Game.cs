@@ -117,6 +117,10 @@ public class Game : MonoBehaviour
 
 
 
-
+    public void Clear()
+    {
+        grid.ClearGrid();
+        UpdateVisuals();
+    }
 
 }
