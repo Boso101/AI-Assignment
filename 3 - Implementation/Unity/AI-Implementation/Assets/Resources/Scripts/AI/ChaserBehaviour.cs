@@ -35,18 +35,27 @@ public class ChaserBehaviour : BaseBehaviour
     }
     public void GoToTarget()
     {
+        PathNode pathNode;
         if (sensor != null && sensor.Target != null)
         {
             Vector2 enemyPos = sensor.Target.transform.position;
-            TryMoveTo(level.GetNode((int)enemyPos.x, (int)enemyPos.y));
+            pathNode = level.GetNode((int)enemyPos.x, (int)enemyPos.y);
+
+  
 
         }
         else
         {
             // Go to last known pos
             Vector2 lastPos = sensor.LastPosition;
-            TryMoveTo(level.GetNode((int)lastPos.x, (int)lastPos.y));
+            pathNode = level.GetNode((int)lastPos.x, (int)lastPos.y);
+
+           
         }
+
+
+        if (pathNode != null)
+            TryMoveTo(pathNode);
     }
 
 
