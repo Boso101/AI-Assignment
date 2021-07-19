@@ -5,9 +5,9 @@ using UnityEngine;
 public class Clicker : MonoBehaviour
 {
     protected Game visual;
-    public Agent playerAgent;
+    public BaseBehaviour playerAgent;
 
-    public void SetPlayer(Agent agent)
+    public void SetPlayer(BaseBehaviour agent)
     {
         playerAgent = agent;
     }
@@ -52,11 +52,13 @@ public class Clicker : MonoBehaviour
 
             if (playerAgent)
             {
-                playerAgent?.SetDestination(node);
+                playerAgent?.TryMoveTo(node);
                 
                
                 return;
             }
+
+
             }
 
 

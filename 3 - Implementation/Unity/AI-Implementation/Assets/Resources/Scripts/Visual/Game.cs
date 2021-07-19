@@ -110,7 +110,7 @@ public class Game : MonoBehaviour
 
 
         //Set Player
-        GameObject.FindObjectOfType<Clicker>().SetPlayer(p.GetComponent<Agent>());
+        GameObject.FindObjectOfType<Clicker>().SetPlayer(p.GetComponent<BaseBehaviour>());
         }
 
  
