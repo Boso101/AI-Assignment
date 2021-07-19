@@ -20,10 +20,7 @@ public class BaseBehaviour : MonoBehaviour
         agent.SetDestination(node);
     }
 
-    public void Die()
-    {
-        agent.Remove();
-    }
+  
 
     
 }

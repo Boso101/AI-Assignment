@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Agent : MonoBehaviour
 {
-    protected static List<Agent> currentAgents;
     protected static Astar pathFinding;
     protected static Grid game;
 
@@ -33,11 +32,10 @@ public class Agent : MonoBehaviour
 
         //TODO: Maybe just dont have an instance of pathfinding for each agent.
         if(pathFinding == null) pathFinding = new Astar();
-        if (currentAgents == null) currentAgents = new List<Agent>();
+     
         if (game == null) game = GameObject.FindObjectOfType<Game>().Grid;
         timeUntilNextMove = moveTime;
 
-        currentAgents.Add(this);
     }
     private void Update()
     {
@@ -117,12 +115,6 @@ public class Agent : MonoBehaviour
             SetState(AgentState.IDLE);
         }
 
-    }
-
-    public void Remove()
-    {
-        currentAgents.Remove(this);
-        Destroy(gameObject);
     }
 
     public void SetState(AgentState st)
