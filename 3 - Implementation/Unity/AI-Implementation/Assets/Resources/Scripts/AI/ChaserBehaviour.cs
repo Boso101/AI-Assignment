@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ChaserBehaviour : BaseBehaviour
 {
+    public const int MAX_CHASERS_AT_TIME = 26;
+
     protected static List<ChaserBehaviour> chaserEntitys;
 
     protected Sensor sensor;
@@ -72,19 +74,22 @@ public class ChaserBehaviour : BaseBehaviour
         {
 
         Vector2 enemyPos = sensor.Target.transform.position;
-
-        foreach (ChaserBehaviour chaser in chaserEntitys)
-        {
-            if(chaser == this)
+            if(chaserEntitys.Count <= 26)
             {
-                continue;
-            }
+                foreach (ChaserBehaviour chaser in chaserEntitys)
+                {
+                    if (chaser == this)
+                    {
+                        continue;
+                    }
 
-            if(chaser.canBlackBoard)
-            //Get them to move in about the right area
-            chaser.TryMoveTo(level.GetNode((int)enemyPos.x, (int)enemyPos.y));
-            
-        }
+                    if (chaser.canBlackBoard)
+                        //Get them to move in about the right area
+                        chaser.TryMoveTo(level.GetNode((int)enemyPos.x, (int)enemyPos.y));
+
+                }
+            }
+        
         }
 
     }
