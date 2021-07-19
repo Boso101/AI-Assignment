@@ -5,7 +5,8 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     private Game game;
-    private GameObject selectedSpawnable;
+    public GameObject[] spawnables;
+    protected int spawnIndex = 0;
 
     private void Awake()
     {
@@ -32,7 +33,7 @@ public class Spawner : MonoBehaviour
 
     public void SpawnObject(Vector2 pos)
     {
-        if(selectedSpawnable != null)Instantiate(selectedSpawnable, pos, Quaternion.identity);
+        if(spawnables[spawnIndex] != null)Instantiate(spawnables[spawnIndex], pos, Quaternion.identity);
     }
     private void TrySpawnWall()
     {
@@ -54,6 +55,25 @@ public class Spawner : MonoBehaviour
 
 
 
+        }
+    }
+
+    public void IncrementIndex()
+    {
+        spawnIndex++;
+        if(spawnIndex >= spawnables.Length)
+        {
+            spawnIndex = spawnables.Length - 1;
+        }
+
+    }
+
+    public void DecrementIndex()
+    {
+        spawnIndex--;
+        if(spawnIndex < 0)
+        {
+            spawnIndex = 0;
         }
     }
 
