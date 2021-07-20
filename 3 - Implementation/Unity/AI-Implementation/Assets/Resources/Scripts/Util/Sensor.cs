@@ -14,6 +14,11 @@ public class Sensor : MonoBehaviour
 
     public UnityEvent OnSeePlayer;
 
+    [Header("Tag Priority")]
+    public List<string> hates; // PlayerTag
+    public List<string> likes; // Powerup
+    public List<string> scared; //Zombie
+
     private void Start()
     {
         InvokeRepeating(nameof(Detect), 1, detectInterval);
@@ -29,13 +34,10 @@ public class Sensor : MonoBehaviour
         //check for player
         foreach (Collider2D coll in potentialTargs)
         {
-            if(coll.gameObject.CompareTag("PowerUp"))
-            {
-                SetTarget(coll.gameObject);
-                OnSeePlayer?.Invoke();
-                return;
-            }
-            else if (coll.gameObject.CompareTag("Player"))
+            string foundTag = coll.gameObject.tag;
+
+            //Check if we found something that we either hate like or scared of
+            if((coll.gameObject != gameObject) && hates.Contains(foundTag) || likes.Contains(foundTag) || scared.Contains(foundTag))
             {
                 SetTarget(coll.gameObject);
                 OnSeePlayer?.Invoke();

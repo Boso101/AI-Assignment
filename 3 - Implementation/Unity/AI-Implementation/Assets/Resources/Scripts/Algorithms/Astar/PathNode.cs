@@ -31,7 +31,7 @@ public class PathNode
         {
 
             if (isWalkable) return Color.gray;
-            return Color.gray*0.85f;
+            return Color.black;
 
         }
 

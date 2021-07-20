@@ -36,29 +36,48 @@ public class ChaserBehaviour : BaseBehaviour
         if (chaserEntitys == null) chaserEntitys = new List<ChaserBehaviour>();
         chaserEntitys.Add(this);
     }
+    /// <summary>
+    /// This refers to target Position, not necesarilly the object we are looking at as our target
+    /// </summary>
     public void GoToTarget()
     {
         PathNode pathNode;
         if (sensor != null && sensor.Target != null)
         {
-            Vector2 enemyPos = sensor.Target.transform.position;
-            pathNode = level.GetNode((int)enemyPos.x, (int)enemyPos.y);
+            string objTag = sensor.Target.tag;
+            // We like or hate so go to it
+            if (sensor.likes.Contains(objTag) || sensor.hates.Contains(objTag))
+            {
+                Vector2 enemyPos = sensor.Target.transform.position;
+                pathNode = level.GetNode((int)enemyPos.x, (int)enemyPos.y);
 
-  
 
+
+            }
+
+            //Zombie so run away
+            else if (sensor.scared.Contains(objTag))
+            {
+                Vector2 enemyPos = sensor.Target.transform.position;
+                Vector2 newPos = (Vector2)transform.position - enemyPos;
+                pathNode = level.GetNode((int)newPos.x, (int)newPos.y);
+
+
+            }
+            else
+            {
+                // Go to last known pos
+                Vector2 lastPos = sensor.LastPosition;
+                pathNode = level.GetNode((int)lastPos.x, (int)lastPos.y);
+
+
+            }
+
+
+
+            if (pathNode != null)
+                TryMoveTo(pathNode);
         }
-        else
-        {
-            // Go to last known pos
-            Vector2 lastPos = sensor.LastPosition;
-            pathNode = level.GetNode((int)lastPos.x, (int)lastPos.y);
-
-           
-        }
-
-
-        if (pathNode != null)
-            TryMoveTo(pathNode);
     }
 
 
@@ -75,6 +94,7 @@ public class ChaserBehaviour : BaseBehaviour
         {
 
         Vector2 enemyPos = sensor.Target.transform.position;
+
             if (chaserEntitys.Count <= MAX_CHASERS_AT_TIME)
             {
                 foreach (ChaserBehaviour chaser in chaserEntitys)

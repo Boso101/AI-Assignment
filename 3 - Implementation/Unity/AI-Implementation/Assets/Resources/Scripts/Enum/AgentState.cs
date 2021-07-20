@@ -2,7 +2,8 @@
 {
     IDLE,
     PATROL,
-    CHASE
+    CHASE,
+    FLEE
 
 
 }

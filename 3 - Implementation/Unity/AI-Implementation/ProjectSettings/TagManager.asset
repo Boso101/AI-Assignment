@@ -6,6 +6,7 @@ TagManager:
   tags:
   - GridComp
   - PowerUp
+  - Zombie
   layers:
   - Default
   - TransparentFX

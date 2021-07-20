@@ -62,6 +62,10 @@ public class Agent : MonoBehaviour
                 TryMove();
                 break;
 
+            case AgentState.FLEE:
+                TryMove();
+                break;
+
         }
  
     }

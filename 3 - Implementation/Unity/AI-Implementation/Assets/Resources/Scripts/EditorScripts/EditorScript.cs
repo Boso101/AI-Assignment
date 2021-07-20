@@ -20,11 +20,9 @@ public class EditorScript : MonoBehaviour
     public Text moveSpeedT;
     public Text straightCostT;
     public Text diagonalMovementCostT;
-    [Header("Chaser Properties")]
-    public GameObject sensorInputBox;
-    public Text sensorTitle;
-    public Text sensorRange;
-    public Text sensorCurrentValue;
+
+
+
 
     public static void ChangeTargetAgent(Agent newAgent)
     {
@@ -59,21 +57,7 @@ public class EditorScript : MonoBehaviour
         straightCost.text = targetAgent.StraightCost.ToString();
         diagonalMovementCost.text = targetAgent.DiagonalCost.ToString();
 
-        //If we have chasers then include some new stuff
-        if (targetAgent.gameObject.TryGetComponent<ChaserBehaviour>(out ChaserBehaviour chaser))
-        {
-
-            sensorTitle.gameObject.SetActive(true);
-            sensorInputBox.SetActive(true);
-        }
-        else
-        {
-            sensorTitle.gameObject.SetActive(false);
-            sensorInputBox.SetActive(false);
-
-
-
-        }
+       
     }
 
     private void Update()
@@ -107,6 +91,7 @@ public class EditorScript : MonoBehaviour
 
     public void DestroyEntity()
     {
+        if(!targetAgent.CompareTag("Player"))
         Destroy(targetAgent.gameObject);
     }
 }
