@@ -79,7 +79,7 @@ public class EditorScript : MonoBehaviour
     private void Update()
     {
         //Middle mouse will select a new unit for us
-        if (Input.GetMouseButton(2))
+        if (Input.GetMouseButtonDown(2))
         {
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero, Mathf.Infinity, agentMask);
@@ -91,6 +91,7 @@ public class EditorScript : MonoBehaviour
                 {
                     ChangeTargetAgent(ag);
                     UnitSelection.UpdateAgent();
+                    UpdateEntityInfo();
                 }
 
 
@@ -102,5 +103,10 @@ public class EditorScript : MonoBehaviour
             }
 
         }
+    }
+
+    public void DestroyEntity()
+    {
+        Destroy(targetAgent.gameObject);
     }
 }

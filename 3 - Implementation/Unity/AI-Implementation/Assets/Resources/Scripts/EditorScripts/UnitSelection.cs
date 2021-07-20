@@ -18,7 +18,7 @@ public class UnitSelection : MonoBehaviour
     private void Update()
     {
 
-        if(marker)
+        if(marker && agentPtr)
         marker.transform.position = agentPtr.transform.position;
     }
 

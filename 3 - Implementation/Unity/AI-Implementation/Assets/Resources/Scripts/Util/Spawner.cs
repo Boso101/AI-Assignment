@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Spawner : MonoBehaviour
 {
     private Game game;
-    public GameObject[] spawnables;
+    protected GameObject[] spawnables;
     protected int spawnIndex = 0;
     [SerializeField] protected Transform spawnPos;
     [SerializeField] protected Image objSprite;
@@ -19,6 +19,7 @@ public class Spawner : MonoBehaviour
     private void Awake()
     {
         game = GameObject.FindObjectOfType<Game>();
+        spawnables = Resources.LoadAll<GameObject>("Prefab/Spawnables");
         preview = GetComponent<CreatePreview>();
         UpdateUI();
     }
