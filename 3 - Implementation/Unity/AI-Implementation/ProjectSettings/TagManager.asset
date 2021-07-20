@@ -7,6 +7,7 @@ TagManager:
   - GridComp
   - PowerUp
   - Zombie
+  - Chaser
   layers:
   - Default
   - TransparentFX

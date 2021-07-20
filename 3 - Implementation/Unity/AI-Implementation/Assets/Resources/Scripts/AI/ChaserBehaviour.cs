@@ -59,8 +59,13 @@ public class ChaserBehaviour : BaseBehaviour
             else if (sensor.scared.Contains(objTag))
             {
                 Vector2 enemyPos = sensor.Target.transform.position;
-                Vector2 newPos = (Vector2)transform.position - enemyPos;
-                pathNode = level.GetNode((int)newPos.x, (int)newPos.y);
+
+              
+                do
+                {
+                    pathNode = level.RandomSpot(transform.position, 42f);
+                }
+                while (pathNode != null && !pathNode.IsWalkable);
 
 
             }

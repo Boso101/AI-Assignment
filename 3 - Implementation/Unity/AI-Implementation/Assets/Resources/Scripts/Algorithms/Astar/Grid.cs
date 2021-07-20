@@ -24,7 +24,7 @@ public class Grid
         return GetNode((int)randomDirection.x, (int)randomDirection.y);
     }
 
-    public Grid(int rows, int columns, float walkPercent)
+    public Grid(int rows, int columns, float walkPercent = 1)
     {
         this.rows = rows;
         this.columns = columns;

@@ -58,11 +58,7 @@ public class Agent : MonoBehaviour
                 
                
                 break;
-            case AgentState.CHASE:
-                TryMove();
-                break;
-
-            case AgentState.FLEE:
+            case AgentState.MOVE:
                 TryMove();
                 break;
 
@@ -107,7 +103,7 @@ public class Agent : MonoBehaviour
     public void SetDestination(PathNode node)
     {
         CalculatePath(node);
-        SetState(AgentState.CHASE);
+        SetState(AgentState.MOVE);
 
     }
 

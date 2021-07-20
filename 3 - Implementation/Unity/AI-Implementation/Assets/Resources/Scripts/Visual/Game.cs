@@ -15,13 +15,13 @@ public class Game : MonoBehaviour
     [SerializeField] protected GameObject enemyPrefab;
     [SerializeField] protected GameObject playerPrefab;
 
-
+    [SerializeField] protected Texture2D level;
 
     [Header("Debugging")]
     [SerializeField] protected Text userInput;
 
     protected Grid grid;
-
+    protected ImageToLevel levelGen;
     //Associate each data node with its visual version
     protected Dictionary<PathNode,GameObject> tileVisuals;
 
@@ -34,14 +34,15 @@ public class Game : MonoBehaviour
 
     private void Awake()
     {
-
+        levelGen = GetComponent<ImageToLevel>();
         grid = new Grid(rows, columns, percentageWalkable);
 
 
-        
         CreateGridVisual(grid);
+        levelGen.Generate(grid, level, playerPrefab, enemyPrefab);
         UpdateVisuals();
-        SpawnPlayer();
+
+        
 
     }
 
