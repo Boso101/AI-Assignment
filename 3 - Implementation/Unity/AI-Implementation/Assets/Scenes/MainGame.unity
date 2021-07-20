@@ -951,6 +951,8 @@ MonoBehaviour:
   gridPrefab: {fileID: 8938149747403948541, guid: f850f00551756564cb26a4e04de48757, type: 3}
   enemyPrefab: {fileID: 1309845565914142823, guid: ba04a9f6389374d488c84d94db8b8ab0, type: 3}
   playerPrefab: {fileID: 1309845565914142823, guid: eb20d50fa14a21145b0ebd6b646fda86, type: 3}
+  mat: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
   level: {fileID: 2800000, guid: 394030e26e754f643a4cef317211c465, type: 3}
   userInput: {fileID: 0}
 --- !u!4 &619994029
