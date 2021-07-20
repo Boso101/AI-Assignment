@@ -979,9 +979,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40dc23d1de09fb946bad9532a983bce3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerColor: {r: 0.24705882, g: 0.28235295, b: 0.8, a: 1}
+  playerColor: {r: 0, g: 0, b: 1, a: 1}
   wallColor: {r: 0, g: 0, b: 0, a: 1}
-  chaserColor: {r: 0.92941177, g: 0.10980392, b: 0.14117648, a: 1}
+  chaserColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &640940033
 GameObject:
   m_ObjectHideFlags: 0

@@ -42,7 +42,8 @@ public class Game : MonoBehaviour
         levelGen.Generate(grid, level, playerPrefab, enemyPrefab);
         UpdateVisuals();
 
-        
+        //Set Player
+        GameObject.FindObjectOfType<Clicker>().SetPlayer(GameObject.FindGameObjectWithTag("Player").GetComponent<BaseBehaviour>());
 
     }
 
@@ -109,16 +110,10 @@ public class Game : MonoBehaviour
     public void SpawnPlayer()
     {
 
-        //Spawn Player
-        GameObject p = Instantiate(playerPrefab);
 
 
 
-
-
-
-        //Set Player
-        GameObject.FindObjectOfType<Clicker>().SetPlayer(p.GetComponent<BaseBehaviour>());
+ 
     }
 
     public void Clear()

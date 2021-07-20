@@ -21,9 +21,9 @@ public class ImageToLevel : MonoBehaviour
         counter = 0;
         for (i = 0; i < level.width; i++)
         {
-            for (j = 0; j < level.height; i++)
+            for (j = 0; j < level.height; j++)
             {
-                PathNode node = grid.GetNode(i, j);
+                PathNode node = grid.GetNode(j, i);
 
                 if(pixels[counter] == playerColor)
                 {
@@ -36,7 +36,8 @@ public class ImageToLevel : MonoBehaviour
                 }
                 else if(pixels[counter] == wallColor)
                 {
-                    node.IsWalkable = false;
+                    if (node != null)
+                        node.IsWalkable = false;
 
                 }
                 else
@@ -46,7 +47,7 @@ public class ImageToLevel : MonoBehaviour
                         node.IsWalkable = true;
                 }
 
-         
+                counter++;
             }
         }
     }
