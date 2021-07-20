@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,6 +9,8 @@ using UnityEngine.UI;
 /// </summary>
 public class EditorScript : MonoBehaviour
 {
+    [Header("Raycast Stuff")]
+    public LayerMask agentMask;
     protected static Agent targetAgent;
     [Header("PlaceHolders")]
     public Text moveSpeed;
@@ -23,11 +26,16 @@ public class EditorScript : MonoBehaviour
     public Text sensorRange;
     public Text sensorCurrentValue;
 
-    static void ChangeTargetAgent(Agent newAgent)
+    public static void ChangeTargetAgent(Agent newAgent)
     {
         targetAgent = newAgent;
     }
-    private void Start()
+
+    public static Agent GetAgent()
+    {
+        return targetAgent;
+    }
+    private void Awake()
     {
         targetAgent = GameObject.FindGameObjectWithTag("Player").GetComponent<Agent>();
         UpdateEntityInfo();
@@ -35,11 +43,11 @@ public class EditorScript : MonoBehaviour
 
     public void Apply()
     {
-        if(moveSpeed.text != string.Empty && straightCost.text != string.Empty && diagonalMovementCost.text != string.Empty)
-        { 
-        targetAgent.MoveTime = float.Parse(moveSpeedT.text);
-        targetAgent.StraightCost = int.Parse(straightCostT.text);
-        targetAgent.DiagonalCost = int.Parse(diagonalMovementCostT.text);
+        if (moveSpeed.text != string.Empty && straightCost.text != string.Empty && diagonalMovementCost.text != string.Empty)
+        {
+            targetAgent.MoveTime = float.Parse(moveSpeedT.text);
+            targetAgent.StraightCost = int.Parse(straightCostT.text);
+            targetAgent.DiagonalCost = int.Parse(diagonalMovementCostT.text);
         }
 
         UpdateEntityInfo();
@@ -52,7 +60,7 @@ public class EditorScript : MonoBehaviour
         diagonalMovementCost.text = targetAgent.DiagonalCost.ToString();
 
         //If we have chasers then include some new stuff
-        if(targetAgent.gameObject.TryGetComponent<ChaserBehaviour>(out ChaserBehaviour chaser))
+        if (targetAgent.gameObject.TryGetComponent<ChaserBehaviour>(out ChaserBehaviour chaser))
         {
 
             sensorTitle.gameObject.SetActive(true);
@@ -64,6 +72,34 @@ public class EditorScript : MonoBehaviour
             sensorInputBox.SetActive(false);
 
 
+
+        }
+    }
+
+    private void Update()
+    {
+        //Middle mouse will select a new unit for us
+        if (Input.GetMouseButton(2))
+        {
+            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero, Mathf.Infinity, agentMask);
+
+
+            if (hit.collider)
+            {
+                if(hit.collider.gameObject.TryGetComponent<Agent>(out Agent ag))
+                {
+                    ChangeTargetAgent(ag);
+                    UnitSelection.UpdateAgent();
+                }
+
+
+           
+
+
+
+
+            }
 
         }
     }

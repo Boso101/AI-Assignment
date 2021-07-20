@@ -35,7 +35,7 @@ public class Spawner : MonoBehaviour
     private void Update()
     {
         // Spawn GameObjects
-        if(Input.GetMouseButton(1))
+        if(Input.GetMouseButtonDown(1))
         {
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
@@ -49,13 +49,17 @@ public class Spawner : MonoBehaviour
                 Vector2 pos = hit.collider.transform.position;
                 // We left clicked so try place start spot
                 PathNode node = game.Grid.GetNode((int)pos.x, (int)pos.y);
-                if(node.IsWalkable)
-                SpawnObject(new Vector2(node.GetXPosition(), node.GetYPosition()));
+                if (node.IsWalkable)
+                    SpawnObject(new Vector2(node.GetXPosition(), node.GetYPosition()));
 
 
 
 
 
+            }
+            else if (hit.collider && !hit.collider.CompareTag("Player") && hit.collider.gameObject.TryGetComponent<Agent>(out Agent ag))
+            {
+                Destroy(hit.collider.gameObject);
             }
         }
 
