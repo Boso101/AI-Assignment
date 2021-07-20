@@ -12,6 +12,10 @@ public class SpeedBoost : PowerUp
         {
             agent.MoveTime = 0.15f;
         }
-        Destroy(gameObject);
+        else
+        {
+            Destroy(gameObject);
+
+        }
     }
 }
