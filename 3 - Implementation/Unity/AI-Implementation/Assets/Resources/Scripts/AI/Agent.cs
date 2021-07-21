@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class Agent : MonoBehaviour
 {
+    // Static since all agents use it
     protected static Astar pathFinding;
+    
+    //Static since all agents refer to the same Grid class.
     protected static Grid game;
 
     // How many units do this move per move update
@@ -73,7 +76,7 @@ public class Agent : MonoBehaviour
 
     private void Move(Vector2 newPos)
     {
-        
+        // Move to tile then reset movetimer
             transform.position = newPos;
             timeUntilNextMove = moveTime;
     }
@@ -109,6 +112,7 @@ public class Agent : MonoBehaviour
 
     public void Patrol()
     {
+        //Patrol is basically just Move but sets a random destination first.
        SetDestination(game.RandomSpot(transform.position, patrolDistance));
         
     }

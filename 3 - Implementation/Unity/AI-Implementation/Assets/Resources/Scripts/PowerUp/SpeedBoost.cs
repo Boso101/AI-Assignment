@@ -8,7 +8,7 @@ public class SpeedBoost : PowerUp
     public override void OnAgentEnter(Agent agent)
     {
         agent.MoveTime /= divisor;
-        if(agent.MoveTime <= 0.15f)
+        if(agent.MoveTime < 0.15f)
         {
             agent.MoveTime = 0.15f;
         }

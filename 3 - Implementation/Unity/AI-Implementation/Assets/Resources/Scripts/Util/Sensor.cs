@@ -12,6 +12,7 @@ public class Sensor : MonoBehaviour
     protected GameObject target;
     protected Vector2 lastKnownPosition;
 
+    //Slower than actions but is fine for this
     public UnityEvent OnSeePlayer;
 
     [Header("Tag Priority")]
@@ -21,17 +22,20 @@ public class Sensor : MonoBehaviour
 
     private void Start()
     {
+        //Every detectInterval seconds, sense for target.
         InvokeRepeating(nameof(Detect), 1, detectInterval);
     }
 
     public GameObject Target { get => target; }
     public Vector2 LastPosition { get => lastKnownPosition; }
+    
     public void Detect()
     {
         // Circle Raycast and go after player
        Collider2D[] potentialTargs =  Physics2D.OverlapCircleAll(transform.position, senseRadius);
 
-        //check for player
+        //check for player 
+        //havent bothered with distance checks yet
         foreach (Collider2D coll in potentialTargs)
         {
             string foundTag = coll.gameObject.tag;
@@ -46,6 +50,7 @@ public class Sensor : MonoBehaviour
 
         }
 
+        //We didn't find anything, so just have a null target
         SetTarget(null);
     }
 

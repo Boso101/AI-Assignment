@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Container class that holds an agents next path with A*
+/// </summary>
 public class PathContainer
 {
     private int currentIndex = 0;

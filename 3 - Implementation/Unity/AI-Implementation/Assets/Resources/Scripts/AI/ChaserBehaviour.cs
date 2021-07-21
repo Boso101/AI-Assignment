@@ -63,9 +63,12 @@ public class ChaserBehaviour : BaseBehaviour
               
                 do
                 {
+
                     pathNode = level.RandomSpot(transform.position, 42f);
                 }
-                while (pathNode != null && !pathNode.IsWalkable);
+
+                //TOOD: Real flee please
+                while ((pathNode == null));
 
 
             }
@@ -118,7 +121,7 @@ public class ChaserBehaviour : BaseBehaviour
             else
             {
 
-                //Only order 26
+                //Only order the max amount
                 for (int i = 0; i < MAX_CHASERS_AT_TIME; i++)
                 {
                     if(chaserEntitys[i].canBlackBoard)
