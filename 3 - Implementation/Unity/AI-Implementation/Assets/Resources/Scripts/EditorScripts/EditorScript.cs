@@ -57,7 +57,8 @@ public class EditorScript : MonoBehaviour
 
             catch
             {
-                Debug.LogError("Something went wrong trying to parse the values");
+                //Silently continue
+                Debug.Log("Something went wrong trying to parse the values");
             }
         }
 
@@ -72,6 +73,9 @@ public class EditorScript : MonoBehaviour
         moveSpeed.text = targetAgent.MoveTime.ToString();
         straightCost.text = targetAgent.StraightCost.ToString();
         diagonalMovementCost.text = targetAgent.DiagonalCost.ToString();
+        moveSpeedT.text = String.Empty;
+        straightCostT.text = String.Empty;
+        diagonalMovementCostT.text = String.Empty;
 
 
     }
