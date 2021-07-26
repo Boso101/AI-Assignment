@@ -114,10 +114,5 @@ public class EditorScript : MonoBehaviour
 
         if (!targetAgent.CompareTag("Player"))
             Destroy(targetAgent.gameObject);
-
-        //Assign to a random ent
-        ChangeTargetAgent(GameObject.FindObjectsOfType<Agent>()[0]);
-        UnitSelection.UpdateAgent();
-        UpdateEntityInfo();
     }
 }

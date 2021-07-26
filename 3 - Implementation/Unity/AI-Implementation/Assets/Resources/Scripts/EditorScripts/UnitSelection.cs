@@ -18,8 +18,10 @@ public class UnitSelection : MonoBehaviour
     private void Update()
     {
 
-        if(marker && agentPtr)
-        marker.transform.position = agentPtr.transform.position;
+        if (marker && agentPtr)
+            marker.transform.position = agentPtr.transform.position;
+        else
+            marker.transform.position = new Vector2(99, 99); // throw outside
     }
 
     //Static so other stuff can call this easily
