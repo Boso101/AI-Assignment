@@ -15,7 +15,6 @@ public class Grid
     public int rows;
     public int columns;
     public float walkablePercentage;
-    //Holds best path
 
     public PathNode RandomSpot(Vector2 origin, float distance)
     {
@@ -29,7 +28,7 @@ public class Grid
         this.rows = rows;
         this.columns = columns;
         walkablePercentage = walkPercent;
-     
+
         CreateGrid();
     }
 
@@ -44,20 +43,20 @@ public class Grid
         {
             for (int j = 0; j < columns; j++)
             {
-                pathNodeGrid[i, j] = new PathNode(i, j, Random.value <= walkablePercentage) ;
+                pathNodeGrid[i, j] = new PathNode(i, j, Random.value <= walkablePercentage);
             }
         }
     }
 
     public PathNode GetNode(int row, int column)
     {
-   try
+        try
         {
 
-        return pathNodeGrid[row, column];
+            return pathNodeGrid[row, column];
         }
 
-catch
+        catch
         {
             return null;
         }
@@ -73,7 +72,7 @@ catch
         {
             for (int y = -1; y <= 1; y++)
             {
-                
+
                 if (x == 0 && y == 0)
                     continue;
 
@@ -98,7 +97,7 @@ catch
     /// </summary>
     public void ClearGrid()
     {
-        for(int i = 0; i < rows; i++)
+        for (int i = 0; i < rows; i++)
         {
             for (int j = 0; j < columns; j++)
             {
