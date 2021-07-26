@@ -21,9 +21,6 @@ public class EditorScript : MonoBehaviour
     public Text straightCostT;
     public Text diagonalMovementCostT;
 
-
-
-
     public static void ChangeTargetAgent(Agent newAgent)
     {
         targetAgent = newAgent;
@@ -35,7 +32,7 @@ public class EditorScript : MonoBehaviour
     }
     private void Awake()
     {
-        targetAgent = GameObject.FindGameObjectWithTag("Player").GetComponent<Agent>();
+        targetAgent = GameObject.FindGameObjectWithTag("Player").GetComponent<Agent>(); 
         UpdateEntityInfo();
     }
 
@@ -114,6 +111,7 @@ public class EditorScript : MonoBehaviour
     {
         if(targetAgent == null) { return; }
         //We don't want to destroy our player
+
         if (!targetAgent.CompareTag("Player"))
             Destroy(targetAgent.gameObject);
 
