@@ -40,9 +40,8 @@ public class Game : MonoBehaviour
 
 
         CreateGridVisual(grid);
-        string levelPath = Path.Combine(Application.streamingAssetsPath, "Level", "Level.png");
         //if this fails, then just spawn player
-        if(!levelGen.Generate(grid, Resources.Load<Texture2D>(levelPath), playerPrefab, enemyPrefab));
+        if (!levelGen.Generate(grid, Application.streamingAssetsPath + "/Level" + "/Level.png",  playerPrefab, enemyPrefab))
         {
             
             Instantiate(playerPrefab);

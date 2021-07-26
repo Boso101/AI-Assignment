@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class ImageToLevel : MonoBehaviour
@@ -9,9 +10,10 @@ public class ImageToLevel : MonoBehaviour
     [SerializeField] protected Color wallColor;
     [SerializeField] protected Color chaserColor;
 
-    public bool Generate(Grid grid, Texture2D level, GameObject playerPrefab, GameObject chaserPrefab)
+    public bool Generate(Grid grid, string levelDir, GameObject playerPrefab, GameObject chaserPrefab)
     {
-        if(level == null) { return false; }
+        Texture2D level = LoadImage(levelDir, 40, 40);
+        if (level == null) { return false; }
         int i, j, counter;
         Color[] pixels = level.GetPixels(); // we use counter to index into this
         counter = 0;
@@ -55,4 +57,18 @@ public class ImageToLevel : MonoBehaviour
 
     }
 
+    public Texture2D LoadImage(string filePath, int width, int height)
+    {
+        Texture2D tex = null; // Set to null so that we can return tex later
+        byte[] fileData;
+
+        if (File.Exists(filePath))
+        {
+            fileData = File.ReadAllBytes(filePath);
+            tex = new Texture2D(width, height);
+            tex.LoadImage(fileData); //..this will auto-resize the texture dimensions.
+        }
+        return tex;
+    }
 }
+
