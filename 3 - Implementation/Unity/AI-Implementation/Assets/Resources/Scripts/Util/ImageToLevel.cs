@@ -28,10 +28,12 @@ public class ImageToLevel : MonoBehaviour
                 if(pixels[counter] == playerColor)
                 {
                     Instantiate(playerPrefab, node.GetPosition(), Quaternion.identity);
+                    node.IsWalkable = true;
                 }
                 else if (pixels[counter] == chaserColor)
                 {
                     Instantiate(chaserPrefab, node.GetPosition(), Quaternion.identity);
+                    node.IsWalkable = true;
 
                 }
                 else if(pixels[counter] == wallColor)
