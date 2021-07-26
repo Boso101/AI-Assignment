@@ -22,7 +22,7 @@ public class UnitSelection : MonoBehaviour
         marker.transform.position = agentPtr.transform.position;
     }
 
-
+    //Static so other stuff can call this easily
     public static void UpdateAgent()
     {
         agentPtr = EditorScript.GetAgent();

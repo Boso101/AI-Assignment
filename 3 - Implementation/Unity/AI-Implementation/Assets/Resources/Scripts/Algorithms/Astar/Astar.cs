@@ -38,7 +38,8 @@ public class Astar
 
         // Following algorithm, we have both an open and close list
 
-        //Use a HashSet for the closed set
+        //Use a HashSet for the closed set since everything will be unique anyway,
+        //will be much faster too.
         HashSet<PathNode> closedList = new HashSet<PathNode>();
 
 

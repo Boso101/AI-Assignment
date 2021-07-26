@@ -54,13 +54,12 @@ public class ChaserBehaviour : BaseBehaviour
 
 
             }
-
-            //Zombie so run away
+            //We scared of it so try run away
             else if (sensor.scared.Contains(objTag))
             {
                 Vector2 enemyPos = sensor.Target.transform.position;
 
-              
+
                 do
                 {
 
@@ -98,10 +97,14 @@ public class ChaserBehaviour : BaseBehaviour
 
     public void TellOthersAboutTarget()
     {
-    if(sensor.Target != null && sensor.Target.CompareTag("Player"))
+        //Make sure we got a target and that target is the player
+        if (sensor.Target != null && sensor.Target.CompareTag("Player"))
         {
+            //store targPos
+            Vector2 enemyPos = sensor.Target.transform.position;
 
-        Vector2 enemyPos = sensor.Target.transform.position;
+            //Determine what to do based on how many chasers are spawned
+            //If too many are spawned, then don't blackboard all of them
 
             if (chaserEntitys.Count <= MAX_CHASERS_AT_TIME)
             {
@@ -124,18 +127,18 @@ public class ChaserBehaviour : BaseBehaviour
                 //Only order the max amount
                 for (int i = 0; i < MAX_CHASERS_AT_TIME; i++)
                 {
-                    if(chaserEntitys[i].canBlackBoard)
+                    if (chaserEntitys[i].canBlackBoard)
                     {
                         chaserEntitys[i].TryMoveTo(level.GetNode((int)enemyPos.x, (int)enemyPos.y));
                     }
                 }
 
             }
-        
+
         }
 
     }
 
-   
+
 
 }

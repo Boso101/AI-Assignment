@@ -39,25 +39,41 @@ public class EditorScript : MonoBehaviour
         UpdateEntityInfo();
     }
 
+    /// <summary>
+    /// Tries to apply everything that has been changed from the user to the agent
+    /// </summary>
     public void Apply()
     {
-        if (moveSpeed.text != string.Empty && straightCost.text != string.Empty && diagonalMovementCost.text != string.Empty)
+        //Can only do if one of the boxes have been changed atleast
+        if (moveSpeed.text != string.Empty || straightCost.text != string.Empty || diagonalMovementCost.text != string.Empty)
         {
-            targetAgent.MoveTime = float.Parse(moveSpeedT.text);
-            targetAgent.StraightCost = int.Parse(straightCostT.text);
-            targetAgent.DiagonalCost = int.Parse(diagonalMovementCostT.text);
+            try
+            {
+
+                targetAgent.MoveTime = float.Parse(moveSpeedT.text);
+                targetAgent.StraightCost = int.Parse(straightCostT.text);
+                targetAgent.DiagonalCost = int.Parse(diagonalMovementCostT.text);
+            }
+
+            catch
+            {
+                Debug.LogError("Something went wrong trying to parse the values");
+            }
         }
 
         UpdateEntityInfo();
     }
 
+    /// <summary>
+    /// Just updates the entitys visual information
+    /// </summary>
     public void UpdateEntityInfo()
     {
         moveSpeed.text = targetAgent.MoveTime.ToString();
         straightCost.text = targetAgent.StraightCost.ToString();
         diagonalMovementCost.text = targetAgent.DiagonalCost.ToString();
 
-       
+
     }
 
     private void Update()
@@ -71,15 +87,16 @@ public class EditorScript : MonoBehaviour
 
             if (hit.collider)
             {
-                if(hit.collider.gameObject.TryGetComponent<Agent>(out Agent ag))
+                if (hit.collider.gameObject.TryGetComponent<Agent>(out Agent ag))
                 {
+                    //Update selection
                     ChangeTargetAgent(ag);
                     UnitSelection.UpdateAgent();
                     UpdateEntityInfo();
                 }
 
 
-           
+
 
 
 
@@ -91,7 +108,8 @@ public class EditorScript : MonoBehaviour
 
     public void DestroyEntity()
     {
-        if(!targetAgent.CompareTag("Player"))
-        Destroy(targetAgent.gameObject);
+        //We don't want to destroy our player
+        if (!targetAgent.CompareTag("Player"))
+            Destroy(targetAgent.gameObject);
     }
 }

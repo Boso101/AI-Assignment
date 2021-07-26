@@ -4,20 +4,15 @@ using UnityEngine;
 
 public class ImageToLevel : MonoBehaviour
 {
-  
+
     [SerializeField] protected Color playerColor;
-   [SerializeField] protected Color wallColor;
-   [SerializeField] protected Color chaserColor;
-
-
-
-   
-
+    [SerializeField] protected Color wallColor;
+    [SerializeField] protected Color chaserColor;
 
     public void Generate(Grid grid, Texture2D level, GameObject playerPrefab, GameObject chaserPrefab)
     {
-        int i, j,counter;
-        Color[] pixels = level.GetPixels();
+        int i, j, counter;
+        Color[] pixels = level.GetPixels(); // we use counter to index into this
         counter = 0;
         for (i = 0; i < level.width; i++)
         {
@@ -25,18 +20,21 @@ public class ImageToLevel : MonoBehaviour
             {
                 PathNode node = grid.GetNode(j, i);
 
-                if(pixels[counter] == playerColor)
+                //Found player color
+                if (pixels[counter] == playerColor)
                 {
                     Instantiate(playerPrefab, node.GetPosition(), Quaternion.identity);
                     node.IsWalkable = true;
                 }
+                //Found chaser color
                 else if (pixels[counter] == chaserColor)
                 {
                     Instantiate(chaserPrefab, node.GetPosition(), Quaternion.identity);
                     node.IsWalkable = true;
 
                 }
-                else if(pixels[counter] == wallColor)
+                //Found wall color
+                else if (pixels[counter] == wallColor)
                 {
                     if (node != null)
                         node.IsWalkable = false;
@@ -45,7 +43,7 @@ public class ImageToLevel : MonoBehaviour
                 else
                 {
                     //Walkable
-                    if(node != null)
+                    if (node != null)
                         node.IsWalkable = true;
                 }
 

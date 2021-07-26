@@ -93,6 +93,7 @@ public class Agent : MonoBehaviour
 
         pathFinding.FindPath(game, container, (int)transform.position.x, (int)transform.position.y, node.GetXPosition(), node.GetYPosition(), straightCost, diagonalCost);
         if (container.Path != null && container.ViewLastNode() != null) 
+            // we set our targetPosition if the path is valid and it has a valid last node
             targetPosition = container.ViewLastNode().GetPosition();
         else
         {
