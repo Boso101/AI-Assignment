@@ -14,7 +14,7 @@ public class Spawner : MonoBehaviour
 
     [Header("UI Stuff")]
     public Text objectName;
-    
+
 
     private void Awake()
     {
@@ -29,14 +29,14 @@ public class Spawner : MonoBehaviour
         objectName.text = GetCurrentSpawnable().name;
         if (preview.spawnedObject)
             preview.Clear();
-        
+
         preview.CreateObjectPreviewSprite(GetCurrentSpawnable().GetComponentInChildren<SpriteRenderer>(), objSprite);
     }
 
     private void Update()
     {
         // Spawn GameObjects
-        if(Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1))
         {
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
@@ -67,7 +67,7 @@ public class Spawner : MonoBehaviour
 
 
         // Spawn Wall
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             TrySpawnWall();
         }
@@ -75,7 +75,7 @@ public class Spawner : MonoBehaviour
 
     public void SpawnObject(Vector2 pos)
     {
-        if(spawnables[spawnIndex] != null)Instantiate(spawnables[spawnIndex], pos, Quaternion.identity);
+        if (spawnables[spawnIndex] != null) Instantiate(spawnables[spawnIndex], pos, Quaternion.identity);
     }
     private void TrySpawnWall()
     {
@@ -90,10 +90,10 @@ public class Spawner : MonoBehaviour
             Vector2 pos = hit.collider.transform.position;
             // We left clicked so try place start spot
             PathNode node = game.Grid.GetNode((int)pos.x, (int)pos.y);
-            node.IsWalkable = !node.IsWalkable;
+            node.IsWalkable = !node.IsWalkable; // either set or remove wall
             game.UpdateVisuals();
-            
-            
+
+
 
 
 
@@ -103,7 +103,7 @@ public class Spawner : MonoBehaviour
     public void IncrementIndex()
     {
         spawnIndex++;
-        if(spawnIndex >= spawnables.Length)
+        if (spawnIndex >= spawnables.Length)
         {
             spawnIndex = 0;
         }
@@ -113,7 +113,7 @@ public class Spawner : MonoBehaviour
     public void DecrementIndex()
     {
         spawnIndex--;
-        if(spawnIndex < 0)
+        if (spawnIndex < 0)
         {
             spawnIndex = spawnables.Length - 1;
         }
@@ -123,6 +123,8 @@ public class Spawner : MonoBehaviour
     {
         return spawnables[spawnIndex];
     }
+
+    // Was originally going to have the object sit on the mouse pos
     public void CreateMousePreview()
     {
         preview.CreateObjectPreview(GetCurrentSpawnable());
