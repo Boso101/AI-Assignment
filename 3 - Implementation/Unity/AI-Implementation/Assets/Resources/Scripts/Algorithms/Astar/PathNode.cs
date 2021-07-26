@@ -108,9 +108,7 @@ public class PathNode
     /// <returns></returns>
     public int GetDistance(PathNode other, int straightCost, int diagonalCost)
     {
-        // Differences between our points thus distance
-        int xDist = Mathf.Abs(Xposition - other.GetXPosition());
-        int yDist = Mathf.Abs(Yposition - other.GetYPosition());
+      
 
         ////Calculate true remainder oncew we have absolute values
         //int remainder = Mathf.Abs(xDist - yDist);
