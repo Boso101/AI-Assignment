@@ -112,8 +112,14 @@ public class EditorScript : MonoBehaviour
 
     public void DestroyEntity()
     {
+        if(targetAgent == null) { return; }
         //We don't want to destroy our player
         if (!targetAgent.CompareTag("Player"))
             Destroy(targetAgent.gameObject);
+
+        //Assign to a random ent
+        ChangeTargetAgent(GameObject.FindObjectsOfType<Agent>()[0]);
+        UnitSelection.UpdateAgent();
+        UpdateEntityInfo();
     }
 }

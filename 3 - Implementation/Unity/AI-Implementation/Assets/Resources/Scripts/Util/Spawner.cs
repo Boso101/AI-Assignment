@@ -51,6 +51,7 @@ public class Spawner : MonoBehaviour
                 // We left clicked so try place start spot
                 PathNode node = game.Grid.GetNode((int)pos.x, (int)pos.y);
                 if (node.IsWalkable)
+
                     SpawnObject(new Vector2(node.GetXPosition(), node.GetYPosition()));
 
 
