@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -39,10 +40,11 @@ public class Game : MonoBehaviour
 
 
         CreateGridVisual(grid);
-
+        string levelPath = Path.Combine(Application.streamingAssetsPath, "Level", "Level.png");
         //if this fails, then just spawn player
-        if(!levelGen.Generate(grid, Resources.Load<Texture2D>(Application.dataPath + "/StreamingAssets/Level/Level.png"), playerPrefab, enemyPrefab));
+        if(!levelGen.Generate(grid, Resources.Load<Texture2D>(levelPath), playerPrefab, enemyPrefab));
         {
+            
             Instantiate(playerPrefab);
         }
 
