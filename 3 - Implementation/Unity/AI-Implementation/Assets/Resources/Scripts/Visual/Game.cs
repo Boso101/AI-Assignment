@@ -16,7 +16,6 @@ public class Game : MonoBehaviour
     [SerializeField] protected GameObject enemyPrefab;
     [SerializeField] protected GameObject playerPrefab;
 
-    [SerializeField] protected Texture2D level;
 
     [Header("Debugging")]
     [SerializeField] protected Text userInput;
@@ -40,7 +39,13 @@ public class Game : MonoBehaviour
 
 
         CreateGridVisual(grid);
-        levelGen.Generate(grid, level, playerPrefab, enemyPrefab);
+
+        //if this fails, then just spawn player
+        if(!levelGen.Generate(grid, Resources.Load<Texture2D>(Application.dataPath + "/StreamingAssets/Level/Level.png"), playerPrefab, enemyPrefab));
+        {
+            Instantiate(playerPrefab);
+        }
+
         UpdateVisuals();
 
         //Set Player

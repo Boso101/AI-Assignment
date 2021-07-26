@@ -9,8 +9,9 @@ public class ImageToLevel : MonoBehaviour
     [SerializeField] protected Color wallColor;
     [SerializeField] protected Color chaserColor;
 
-    public void Generate(Grid grid, Texture2D level, GameObject playerPrefab, GameObject chaserPrefab)
+    public bool Generate(Grid grid, Texture2D level, GameObject playerPrefab, GameObject chaserPrefab)
     {
+        if(level == null) { return false; }
         int i, j, counter;
         Color[] pixels = level.GetPixels(); // we use counter to index into this
         counter = 0;
@@ -50,5 +51,8 @@ public class ImageToLevel : MonoBehaviour
                 counter++;
             }
         }
+        return true;
+
     }
+
 }
