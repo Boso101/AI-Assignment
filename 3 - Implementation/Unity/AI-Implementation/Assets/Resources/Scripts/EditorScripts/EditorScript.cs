@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// This will do but it isn't really dynamic... Only works with BaseBehaviour and ChaserBehaviour
+/// This will do but it isn't really dynamic... Only works with BaseBehaviour
 /// </summary>
 public class EditorScript : MonoBehaviour
 {
