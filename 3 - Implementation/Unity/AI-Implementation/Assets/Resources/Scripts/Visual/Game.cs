@@ -70,7 +70,7 @@ public class Game : MonoBehaviour
     {
         foreach(KeyValuePair<PathNode, GameObject> entry in tileVisuals)
         {
-            entry.Value.GetComponentInChildren<Renderer>().material.SetColor("_Color", entry.Key.Color);
+            entry.Value.GetComponentInChildren<SpriteRenderer>().color = entry.Key.Color;
         }
 
     }
@@ -102,7 +102,7 @@ public class Game : MonoBehaviour
                     gridObj.transform.position = new Vector2(node.GetXPosition(), node.GetYPosition());
                     gridObj.name = gridObj.transform.position.ToString();
 
-                    gridObj.GetComponentInChildren<Renderer>().material.SetColor("_Color", node.Color);
+                gridObj.GetComponentInChildren<SpriteRenderer>().color = node.Color;
                 // Add to dictionary with the node as the key and the visual as the value
                 tileVisuals.Add(node, gridObj);
 
