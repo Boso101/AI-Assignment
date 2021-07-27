@@ -15,13 +15,14 @@ public class ImageToLevel : MonoBehaviour
         Texture2D level = LoadImage(levelDir, 40, 40);
         if (level == null) { return false; }
         int i, j, counter;
+        PathNode node;
         Color[] pixels = level.GetPixels(); // we use counter to index into this
         counter = 0;
         for (i = 0; i < level.width; i++)
         {
             for (j = 0; j < level.height; j++)
             {
-                PathNode node = grid.GetNode(j, i);
+                 node = grid.GetNode(j, i);
 
                 //Found player color
                 if (pixels[counter] == playerColor)
