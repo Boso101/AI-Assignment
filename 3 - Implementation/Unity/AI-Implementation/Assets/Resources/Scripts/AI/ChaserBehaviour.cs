@@ -67,7 +67,7 @@ public class ChaserBehaviour : BaseBehaviour
                 }
 
                 //TOOD: Real flee please
-                while ((pathNode == null) && pathNode.GetPosition() != enemyPos);
+                while ((pathNode == null));
 
 
             }
